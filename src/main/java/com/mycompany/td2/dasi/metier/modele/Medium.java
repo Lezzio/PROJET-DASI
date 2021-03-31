@@ -5,15 +5,25 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author aguigal
  */
-public class Medium {
+@Entity
+public class Medium implements Serializable {
     
+    @Id
+    private long id;
     protected String presentation;
     protected String name;
     protected String gender;
+
+    public Medium() {
+    }
 
     public Medium(String presentation, String name, String gender) {
         this.presentation = presentation;
@@ -21,6 +31,10 @@ public class Medium {
         this.gender = gender;
     }
 
+    public Long getId() {
+        return id;
+    }
+    
     public String getPresentation() {
         return presentation;
     }
