@@ -7,7 +7,9 @@ package com.mycompany.td2.dasi;
 
 import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.services.ClientService;
+import com.mycompany.td2.dasi.metier.services.EmployeeService;
 import java.sql.Date;
 
 /**
@@ -16,6 +18,7 @@ import java.sql.Date;
 public class Main {
     
     public static ClientService clientService = new ClientService();
+    public static EmployeeService employeeService = new EmployeeService();
     
     public static void main(String[] args) {
         System.out.println("TD1 - DASI init");
@@ -28,6 +31,8 @@ public class Main {
         clientService.inscrireClient(client1);
         Client client2 = clientService.rechercherClientParId(client1.getId());
         System.out.println(client2.toString());
+        Employee employee = new Employee("Autre", "yasmine", "souabi", "yasmine.souabi", "jesuisunemerde");
+        employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
     }
     
 }
