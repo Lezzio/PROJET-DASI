@@ -2,7 +2,9 @@ package com.mycompany.td2.dasi.metier.services;
 
 import com.mycompany.td2.dasi.dao.ClientDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.AstralProfile;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.utils.AstroNetApi;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +23,11 @@ public class ClientService {
         Long resultat = null;
         JpaUtil.creerContextePersistance();
         try {
+            //Générer le profile astral
+            AstroNetApi astroNetApi = new AstroNetApi();
+            List<String> astroStatements = astroNetApi.getProfil(client.getFirstName(), client.getBirthDate());
+            AstralProfile astralProfile = new AstralProfile(astroStatements.get(0), astroStatements.get(1), astroStatements.get(2), astroStatements.get(3));
+            client.setAstralProfile(astralProfile);
             JpaUtil.ouvrirTransaction();
             clientDao.creer(client);
             JpaUtil.validerTransaction();
@@ -36,7 +43,7 @@ public class ClientService {
             resultat = null;
             //Notifier l'échec
             Message.envoyerMail(contactMail, client.getMail(),
-                    "Bienvenue chez PREDICT'IF",
+                    "Echec de l’inscription chez PREDICT’IF",
                     "Bonjour " + client.getFirstName() + ", votre inscription au service PREDICT’IF a malencontreusement échoué...\n" +
 "Merci de recommencer ultérieurement.");
         } finally {

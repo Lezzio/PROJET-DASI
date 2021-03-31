@@ -7,6 +7,7 @@ package com.mycompany.td2.dasi.metier.modele;
 
 import java.sql.Date;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,10 @@ public class Client {
     private String password;
     private String civility;
     private Date birthDate;
+    @Embedded
+    private AstralProfile astralProfile;
+    
+    
     
     public Client() {
         
@@ -39,6 +44,7 @@ public class Client {
         this.mail = mail;
         this.password = password;
         this.birthDate = birthDate;
+        this.astralProfile = null;
     }
     
     public Long getId() {
@@ -84,6 +90,13 @@ public class Client {
     @Override
     public String toString() {
         return "-> Client: id="+id+";lastName="+lastName+";firstName="+firstName+";mail="+mail+";password"+password+";birthDate="+birthDate;
+    }
+
+    public AstralProfile getAstralProfile() {
+        return astralProfile;
+    }
+    public void setAstralProfile(AstralProfile astralProfile) {
+        this.astralProfile = astralProfile;
     }
     
 }
