@@ -8,6 +8,7 @@
     <class>com.mycompany.td2.dasi.metier.modele.Spirite</class>
     <class>com.mycompany.td2.dasi.metier.modele.Cartomancian</class>
     <class>com.mycompany.td2.dasi.metier.modele.Astrolog</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Consultation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/TD1"/>
       <property name="javax.persistence.jdbc.user" value="maxime"/>

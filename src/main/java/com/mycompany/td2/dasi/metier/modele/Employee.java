@@ -5,14 +5,26 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author aguigal
  */
+@Entity
 public class Employee {
     
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private String gender;
     private String firstName;
+
+    public Employee() {
+    }
     private String lastName;
     private String mail;
     private String password;

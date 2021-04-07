@@ -25,6 +25,9 @@ public class Consultation {
     private Client client;
     private Employee employee;
 
+     public Consultation(){
+         
+     }
     
     public Consultation(Client client, Medium medium) {
         this.client = client;
