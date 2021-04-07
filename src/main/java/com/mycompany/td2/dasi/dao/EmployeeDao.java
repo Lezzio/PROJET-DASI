@@ -6,6 +6,7 @@
 package com.mycompany.td2.dasi.dao;
 
 import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -41,6 +42,13 @@ public class EmployeeDao {
     public List<Employee> listEmployees() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e ORDER BY e.nom ASC, e.prenom ASC", Employee.class);
+        return query.getResultList();
+    }
+    
+    public List<Employee> availableEmployeesMatchingMedium(Medium medium) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.available = true AND e.gender = :gender ORDER BY e.appointmentCount ASC", Employee.class);
+        query.setParameter("gender", medium.getGender());
         return query.getResultList();
     }
     

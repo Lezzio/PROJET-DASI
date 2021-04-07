@@ -25,6 +25,7 @@ public class Main {
         JpaUtil.init();
         
         testerInscriptionClient();
+        JpaUtil.destroy();
     }
     public static void testerInscriptionClient() {
         Client client1 = new Client("Dupond", "Jean", "jd@gmail.com", "mdp2", Date.valueOf("2020-05-05"));

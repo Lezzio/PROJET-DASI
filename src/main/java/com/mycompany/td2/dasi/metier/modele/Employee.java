@@ -16,6 +16,8 @@ public class Employee {
     private String lastName;
     private String mail;
     private String password;
+    private boolean available;
+    private int appointmentCount;
     
     public Employee(String gender, String firstName, String lastName, String mail, String password) {
         this.gender = gender;
@@ -23,6 +25,13 @@ public class Employee {
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+    }
+    
+    public boolean isAvailable() {
+        return available;
+    }
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
     
     public String getGender() {
@@ -63,6 +72,13 @@ public class Employee {
 
     public String getPassword() {
         return password;
+    }
+    
+    public int getAppointmentCount() {
+        return appointmentCount;
+    }
+    public void setAppointmentCount(int appointmentCount) {
+        this.appointmentCount = appointmentCount;
     }
     
 }

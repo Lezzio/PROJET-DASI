@@ -1,9 +1,14 @@
 package com.mycompany.td2.dasi.metier.services;
 
 import com.mycompany.td2.dasi.dao.ClientDao;
+import com.mycompany.td2.dasi.dao.ConsultationDao;
+import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.AstralProfile;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Consultation;
+import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.utils.AstroNetApi;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,8 +21,10 @@ import util.Message;
 public class ClientService {
     
     private final String contactMail = "contact@predict.if";
-
-    protected ClientDao clientDao = new ClientDao();
+    
+    private final ClientDao clientDao = new ClientDao();
+    private final EmployeeDao employeeDao = new EmployeeDao();
+    private final ConsultationDao consultationDao = new ConsultationDao();
 
     public Long inscrireClient(Client client) {
         Long resultat = null;
@@ -100,5 +107,29 @@ public class ClientService {
         }
         return resultat;
     }
+    
+    public void askConsultation(Client client, Medium medium) {
+        Long resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            //Find available employee to embody the medium
+            List<Employee> availableMatchingEmployees = employeeDao.availableEmployeesMatchingMedium(medium);
+            //Take the one with least appointment count (ascendant ordered list)
+            Employee employee = availableMatchingEmployees.get(0);
+            
+            if(employee != null) {
+                //Create consultation
+                Consultation consultation = new Consultation(client, medium);
+                consultationDao.creer(consultation);
+            }
+            
+        } catch(Exception e) {
+            
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        
+    }
+    
 
 }
