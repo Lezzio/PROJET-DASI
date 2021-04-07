@@ -8,6 +8,7 @@ package com.mycompany.td2.dasi.metier.services;
 import com.mycompany.td2.dasi.dao.MediumDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Medium;
+import com.mycompany.td2.dasi.metier.modele.Spirite;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

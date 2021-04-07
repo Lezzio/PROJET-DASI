@@ -5,13 +5,20 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author aguigal
  */
-public class Spirite extends Medium {
+@Entity
+public class Spirite extends Medium implements Serializable {
     
     private String support;
+
+    public Spirite() {
+    }
 
     public Spirite(String presentation, String name, String gender, String support) {
         super(presentation, name, gender);

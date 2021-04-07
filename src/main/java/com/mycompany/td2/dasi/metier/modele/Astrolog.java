@@ -5,11 +5,21 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author maxime
  */
+@Entity
 public class Astrolog extends Medium {
+
+    public Astrolog() {
+    }
+
+    public Astrolog(String presentation, String name, String gender) {
+        super(presentation, name, gender);
+    }
     
     private String formation;
     private String promotion;

@@ -5,18 +5,20 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author aguigal
  */
 @Entity
-public class Medium implements Serializable {
+@Inheritance (strategy = InheritanceType.JOINED)
+public class Medium {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

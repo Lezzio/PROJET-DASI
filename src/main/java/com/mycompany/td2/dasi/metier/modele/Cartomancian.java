@@ -5,11 +5,18 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+
 /**
  *
  * @author maxim
  */
-public class Cartomancian extends Medium {
+@Entity
+public class Cartomancian extends Medium implements Serializable {
+
+    public Cartomancian() {
+    }
 
     public Cartomancian(String presentation, String name, String gender) {
         super(presentation, name, gender);
