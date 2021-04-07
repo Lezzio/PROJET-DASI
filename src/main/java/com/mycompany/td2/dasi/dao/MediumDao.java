@@ -21,11 +21,11 @@ public class MediumDao {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(medium);
     }
-    
+    /*
     public Medium chercherParId(Long mediumId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Medium.class, mediumId); // renvoie null si l'identifiant n'existe pas
-    }
+    }*/
     /*
     public List<Medium> listMedium() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
