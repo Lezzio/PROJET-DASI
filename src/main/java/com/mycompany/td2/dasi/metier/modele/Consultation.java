@@ -6,11 +6,13 @@
 package com.mycompany.td2.dasi.metier.modele;
 
 import java.sql.Date;
+import javax.persistence.Entity;
 
 /**
  *
  * @author aguigal
  */
+@Entity
 public class Consultation {
     
     private Date startDate;

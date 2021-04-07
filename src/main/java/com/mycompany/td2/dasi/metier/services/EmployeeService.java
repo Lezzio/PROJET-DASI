@@ -7,6 +7,7 @@ package com.mycompany.td2.dasi.metier.services;
 
 import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.util.logging.Level;
 import java.util.logging.Logger;
