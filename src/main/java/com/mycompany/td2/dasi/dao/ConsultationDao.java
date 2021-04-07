@@ -6,6 +6,7 @@
 package com.mycompany.td2.dasi.dao;
 
 import com.mycompany.td2.dasi.metier.modele.Consultation;
+import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -44,5 +45,19 @@ public class ConsultationDao {
         }
         return result;
     }
+    
+    public Consultation findByEmployee(Employee employee) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.employee = :employee", Consultation.class);
+        query.setParameter("employee", employee.getId()); // correspond au paramètre ":mail" dans la requête
+        List<Consultation> mediums = query.getResultList();
+        Consultation result = null;
+        if (!mediums.isEmpty()) {
+            result = mediums.get(0); // premier de la liste
+        }
+        return result;
+    }
+    
+    
     
 }

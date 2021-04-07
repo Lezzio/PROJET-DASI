@@ -39,6 +39,11 @@ public class EmployeeDao {
         return result;
     }
     
+    public Employee updateEmployee(Employee employee) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        return em.merge(employee); //TODO Check if working
+    }
+    
     public List<Employee> listEmployees() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e ORDER BY e.nom ASC, e.prenom ASC", Employee.class);

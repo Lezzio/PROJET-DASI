@@ -5,10 +5,14 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author aguigal
  */
+@Entity
 public class Employee {
     
     private String gender;
@@ -16,15 +20,19 @@ public class Employee {
     private String lastName;
     private String mail;
     private String password;
+    private String phone;
     private boolean available;
     private int appointmentCount;
+    @Id
+    private Long id;
     
-    public Employee(String gender, String firstName, String lastName, String mail, String password) {
+    public Employee(String gender, String firstName, String lastName, String mail, String password, String phone) {
         this.gender = gender;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
         this.password = password;
+        this.phone = phone;
     }
     
     public boolean isAvailable() {
@@ -81,4 +89,18 @@ public class Employee {
         this.appointmentCount = appointmentCount;
     }
     
+    public String getPhone() {
+        return phone;
+    }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

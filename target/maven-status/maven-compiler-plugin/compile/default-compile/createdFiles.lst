@@ -1,7 +1,5 @@
-com/mycompany/td2/dasi/dao/JpaUtil.class
-com/mycompany/td2/dasi/metier/services/ClientService.class
-com/mycompany/td2/dasi/dao/ClientDao.class
-com/mycompany/td2/dasi/Main.class
 com/mycompany/td2/dasi/ihm/console/Saisie.class
-com/mycompany/td2/dasi/dao/JpaUtil$1.class
 com/mycompany/td2/dasi/metier/modele/Client.class
+com/mycompany/td2/dasi/dao/ClientDao.class
+com/mycompany/td2/dasi/dao/JpaUtil$1.class
+com/mycompany/td2/dasi/dao/JpaUtil.class

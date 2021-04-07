@@ -7,6 +7,7 @@ package com.mycompany.td2.dasi.metier.services;
 
 import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 public class EmployeeService {
     
     private final EmployeeDao employeeDao = new EmployeeDao();
+    private final ConsultationDao consultationDao = new ConsultationDao();
 
     public Employee authentifierEmployee(String mail, String motDePasse) {
         Employee resultat = null;
@@ -39,8 +41,12 @@ public class EmployeeService {
         }
         return resultat;
     }
+    public Consultation getEmployeeConsultation(Employee employee) {
+        return null; //TODO Implement
+    }
     
     public void endConsultation(Employee employee) {
+        
     }
     
 }

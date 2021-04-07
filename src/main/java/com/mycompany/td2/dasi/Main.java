@@ -39,12 +39,12 @@ public class Main {
         admin.initialiserEmployeeMedium();
     }
     public static void testerInscriptionClient() {
-        Client client1 = new Client("Dupond", "Jean", "jd@gmail.com", "mdp2", Date.valueOf("2020-05-05"));
-        clientService.inscrireClient(client1);
-        Client client2 = clientService.rechercherClientParId(client1.getId());
-        System.out.println(client2.toString());
-        Employee employee = new Employee("Autre", "yasmine", "souabi", "yasmine.souabi", "jesuisunemerde");
-        employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
+        //Client client1 = new Client("Dupond", "Jean", "jd@gmail.com", "mdp2", Date.valueOf("2020-05-05"));
+        //clientService.inscrireClient(client1);
+        //Client client2 = clientService.rechercherClientParId(client1.getId());
+        //System.out.println(client2.toString());
+        //Employee employee = new Employee("Autre", "yasmine", "souabi", "yasmine.souabi", "jesuisunemerde");
+        //employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
     }
     
 }

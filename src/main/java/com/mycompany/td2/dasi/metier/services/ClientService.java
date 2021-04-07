@@ -108,8 +108,8 @@ public class ClientService {
         return resultat;
     }
     
-    public void askConsultation(Client client, Medium medium) {
-        Long resultat = null;
+    public Long askConsultation(Client client, Medium medium) {
+        Long result = null;
         JpaUtil.creerContextePersistance();
         try {
             //Find available employee to embody the medium
@@ -120,16 +120,28 @@ public class ClientService {
             if(employee != null) {
                 //Create consultation
                 Consultation consultation = new Consultation(client, medium);
+                JpaUtil.ouvrirTransaction();
+                
                 consultationDao.creer(consultation);
+                result = consultation.getId();
+                
+                Message.envoyerNotification(employee.getPhone(), ""
+                        + "Bonjour " + employee.getFirstName() + 
+                        ". Consultation requise pour "
+                        + client.getCivility() + " "
+                        + client.getFirstName() + " "
+                        + client.getLastName().toUpperCase()
+                        + ". Médium à incarner : " + medium.getName());
+                employee.setAvailable(false);
+                
+                employeeDao.updateEmployee(employee);
+                JpaUtil.validerTransaction();
             }
-            
         } catch(Exception e) {
             
         } finally {
             JpaUtil.fermerContextePersistance();
         }
-        
+        return result;
     }
-    
-
 }

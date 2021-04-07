@@ -29,6 +29,7 @@ public class Client {
     private String mail;
     private String password;
     private String civility;
+    private String phone;
     private Date birthDate;
     @Embedded
     private AstralProfile astralProfile;
@@ -38,13 +39,14 @@ public class Client {
     public Client() {
         
     }
-    public Client(String lastName, String firstName, String mail, String password, Date birthDate) {
+    public Client(String lastName, String firstName, String mail, String password, Date birthDate, String phone) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.mail = mail;
         this.password = password;
         this.birthDate = birthDate;
         this.astralProfile = null;
+        this.phone = phone;
     }
     
     public Long getId() {
@@ -97,6 +99,14 @@ public class Client {
     }
     public void setAstralProfile(AstralProfile astralProfile) {
         this.astralProfile = astralProfile;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    public String getPhone(String phone) {
+        return phone;
     }
     
 }
