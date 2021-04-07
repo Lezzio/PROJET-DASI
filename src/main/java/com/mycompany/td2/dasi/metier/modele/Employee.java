@@ -6,6 +6,8 @@
 package com.mycompany.td2.dasi.metier.modele;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,8 +17,10 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
     
+    
     private String gender;
     private String firstName;
+
     private String lastName;
     private String mail;
     private String password;
@@ -24,7 +28,11 @@ public class Employee {
     private boolean available;
     private int appointmentCount;
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    
+    public Employee() {
+    }
     
     public Employee(String gender, String firstName, String lastName, String mail, String password, String phone) {
         this.gender = gender;

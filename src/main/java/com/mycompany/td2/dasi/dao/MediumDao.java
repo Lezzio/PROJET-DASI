@@ -26,12 +26,13 @@ public class MediumDao {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Medium.class, mediumId); // renvoie null si l'identifiant n'existe pas
     }*/
-    /*
-    public List<Medium> listMedium() {
+
+    public List<Medium> listerMediums() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
-        TypedQuery<Medium> query = em.createQuery("SELECT e FROM Medium e ORDER BY e.nom ASC, e.prenom ASC", Medium.class);
+        TypedQuery<Medium> query = em.createQuery("SELECT m FROM Medium m", Medium.class);
         return query.getResultList();
     }
-    */
+
+  
     // modifier / supprimer  ... 
 }

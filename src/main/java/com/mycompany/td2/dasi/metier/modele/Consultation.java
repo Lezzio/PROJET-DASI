@@ -7,6 +7,8 @@ package com.mycompany.td2.dasi.metier.modele;
 
 import java.sql.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -16,15 +18,19 @@ import javax.persistence.Id;
 @Entity
 public class Consultation {
 
-    @Id
-    private Long id;
     private Date startDate;
     private Date endDate;
     private String commentary;
     private Medium medium;
     private Client client;
     private Employee employee;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
+     public Consultation(){
+         
+     }
     
     public Consultation(Client client, Medium medium) {
         this.client = client;
