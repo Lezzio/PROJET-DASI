@@ -5,10 +5,12 @@
  */
 package com.mycompany.td2.dasi.metier.services;
 
+import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,12 +43,67 @@ public class EmployeeService {
         }
         return resultat;
     }
-    public Consultation getEmployeeConsultation(Employee employee) {
-        return null; //TODO Implement
+    
+    /**
+     * Returns active or pending consultation
+     * @param employee
+     * @return 
+     */
+    public Consultation getEmployeeActiveConsultation(Employee employee) {
+        Consultation result = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            result = consultationDao.searchActiveEmployeeConsultation(employee);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getEmployeeActiveConsultation(Employee employee)", e);
+            result = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return result;
     }
     
-    public void endConsultation(Employee employee) {
-        
+    public Consultation acceptConsultation(Employee employee, Consultation consultation) {
+        JpaUtil.creerContextePersistance();
+        try {
+            Date now = new Date();
+            consultation.setStartDate(now);
+            consultationDao.updateConsultation(consultation);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getEmployeeActiveConsultation(Employee employee)", e);
+            consultation = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return consultation;
+    }
+    
+    public void denyConsultation(Employee employee, Consultation consultation) {
+        JpaUtil.creerContextePersistance();
+        try {
+            employee.setAvailable(true);
+            employeeDao.updateEmployee(employee);
+            consultationDao.removeConsultation(consultation);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service denyConsultation(Employee employee, Consultation consultation", e);
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+    }
+    
+    public void endConsultation(Employee employee, Consultation consultation) {
+        JpaUtil.creerContextePersistance();
+        try {
+            employee.setAvailable(true);
+            employeeDao.updateEmployee(employee);
+            Date now = new Date();
+            consultation.setEndDate(now);
+            consultationDao.updateConsultation(consultation);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service denyConsultation(Employee employee, Consultation consultation", e);
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
     }
     
 }

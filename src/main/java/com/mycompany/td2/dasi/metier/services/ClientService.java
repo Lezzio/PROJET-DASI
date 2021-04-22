@@ -119,7 +119,7 @@ public class ClientService {
             
             if(employee != null) {
                 //Create consultation
-                Consultation consultation = new Consultation(client, medium);
+                Consultation consultation = new Consultation(client, medium, employee);
                 JpaUtil.ouvrirTransaction();
                 
                 consultationDao.creer(consultation);

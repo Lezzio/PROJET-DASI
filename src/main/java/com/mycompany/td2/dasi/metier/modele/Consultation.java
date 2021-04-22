@@ -5,7 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,9 +32,10 @@ public class Consultation {
          
      }
     
-    public Consultation(Client client, Medium medium) {
+    public Consultation(Client client, Medium medium, Employee employee) {
         this.client = client;
         this.medium = medium;
+        this.employee = employee;
     }
     public Consultation(Date startDate, Date endDate, String commentary, Medium medium, Employee employee, Client client) {
         

@@ -18,6 +18,10 @@ import javax.persistence.Id;
 public class Employee {
     
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    
     private String gender;
     private String firstName;
 
@@ -27,9 +31,6 @@ public class Employee {
     private String phone;
     private boolean available;
     private int appointmentCount;
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
     
     public Employee() {
     }
