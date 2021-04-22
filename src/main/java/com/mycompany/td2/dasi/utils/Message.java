@@ -1,4 +1,4 @@
-package util;
+package com.mycompany.td2.dasi.utils;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

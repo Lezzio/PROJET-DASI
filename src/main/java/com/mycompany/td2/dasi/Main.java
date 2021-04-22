@@ -24,7 +24,6 @@ public class Main {
     public static MediumService mediumService = new MediumService();
     public static Administration admin = new Administration();
     
-    
     public static void main(String[] args) throws RemoteException {
         System.out.println("TD2 - DASI init");
         JpaUtil.init();
@@ -35,6 +34,12 @@ public class Main {
         admin.initialiserEmployeeMedium();
         
         afficherListeMediums();
+        
+        List<String> listeMessage = admin.lesMessagesInspiration(1, 3, 4);
+        for(String m : listeMessage){
+            System.out.println(m);
+        }
+        
         
         JpaUtil.destroy();
     }
@@ -57,6 +62,5 @@ public class Main {
       }
  
   }
-    
     
 }
