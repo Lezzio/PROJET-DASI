@@ -10,6 +10,7 @@ import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.ClientService;
 import com.mycompany.td2.dasi.metier.services.MediumService;
 import com.mycompany.td2.dasi.utils.Administration;
+import com.mycompany.td2.dasi.utils.MessageInspiration;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Main {
     //public static EmployeeService employeeService = new EmployeeService();
     public static MediumService mediumService = new MediumService();
     public static Administration admin = new Administration();
-    
+    public static MessageInspiration adminInspireMedium = new MessageInspiration();
     
     public static void main(String[] args) throws RemoteException {
         System.out.println("TD2 - DASI init");
@@ -35,6 +36,19 @@ public class Main {
         admin.initialiserEmployeeMedium();
         
         afficherListeMediums();
+        
+        List<MessageInspiration> listeSanté = adminInspireMedium.listeMessageSanté();
+        List<MessageInspiration> listeTravail = adminInspireMedium.listeMessageTravail();
+        List<MessageInspiration> listeAmour = adminInspireMedium.listeMessageAmour();
+        for(MessageInspiration m : listeSanté){
+            System.out.println(m.getTexteMessage());
+        }
+        for(MessageInspiration m : listeTravail){
+            System.out.println(m.getTexteMessage());
+        }
+        for(MessageInspiration m : listeAmour){
+            System.out.println(m.getTexteMessage());
+        }
         
         JpaUtil.destroy();
     }
@@ -57,6 +71,10 @@ public class Main {
       }
  
   }
+
+    private static List<MessageInspiration> listeMessageSanté() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

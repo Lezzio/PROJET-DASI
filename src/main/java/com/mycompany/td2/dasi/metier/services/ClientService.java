@@ -10,10 +10,10 @@ import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.utils.AstroNetApi;
+import com.mycompany.td2.dasi.utils.Message;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import util.Message;
 
 /**
  *

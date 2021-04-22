@@ -6,7 +6,6 @@
 package com.mycompany.td2.dasi.dao;
 
 import com.mycompany.td2.dasi.metier.modele.Medium;
-import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
