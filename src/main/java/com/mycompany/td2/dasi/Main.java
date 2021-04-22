@@ -10,7 +10,7 @@ import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.ClientService;
 import com.mycompany.td2.dasi.metier.services.MediumService;
 import com.mycompany.td2.dasi.utils.Administration;
-import com.mycompany.td2.dasi.utils.MessageInspiration;
+import metier.service.MessageInspiration;
 import java.rmi.RemoteException;
 import java.util.Iterator;
 import java.util.List;
@@ -37,18 +37,11 @@ public class Main {
         
         afficherListeMediums();
         
-        List<MessageInspiration> listeSanté = adminInspireMedium.listeMessageSanté();
-        List<MessageInspiration> listeTravail = adminInspireMedium.listeMessageTravail();
-        List<MessageInspiration> listeAmour = adminInspireMedium.listeMessageAmour();
-        for(MessageInspiration m : listeSanté){
-            System.out.println(m.getTexteMessage());
+        List<String> listeMessage = admin.lesMessagesInspiration(1, 3, 4);
+        for(String m : listeMessage){
+            System.out.println(m);
         }
-        for(MessageInspiration m : listeTravail){
-            System.out.println(m.getTexteMessage());
-        }
-        for(MessageInspiration m : listeAmour){
-            System.out.println(m.getTexteMessage());
-        }
+        
         
         JpaUtil.destroy();
     }
