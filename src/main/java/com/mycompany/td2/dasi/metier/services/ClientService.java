@@ -26,7 +26,7 @@ public class ClientService {
     private final EmployeeDao employeeDao = new EmployeeDao();
     private final ConsultationDao consultationDao = new ConsultationDao();
 
-    public Long inscrireClient(Client client) {
+    public Long signupClient(Client client) {
         Long resultat = null;
         JpaUtil.creerContextePersistance();
         try {
@@ -59,13 +59,13 @@ public class ClientService {
         return resultat;
     }
 
-    public Client rechercherClientParId(Long id) {
+    public Client searchClientById(Long id) {
         Client resultat = null;
         JpaUtil.creerContextePersistance();
         try {
             resultat = clientDao.chercherParId(id);
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service rechercherClientParId(id)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service searchClientById(id)", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();
@@ -73,7 +73,7 @@ public class ClientService {
         return resultat;
     }
 
-    public Client authentifierClient(String mail, String motDePasse) {
+    public Client authentificateClient(String mail, String password) {
         Client resultat = null;
         JpaUtil.creerContextePersistance();
         try {
@@ -81,7 +81,7 @@ public class ClientService {
             Client client = clientDao.chercherParMail(mail);
             if (client != null) {
                 // Vérification du mot de passe
-                if (client.getPassword().equals(motDePasse)) {
+                if (client.getPassword().equals(password)) {
                     resultat = client;
                 }
             }
@@ -94,7 +94,7 @@ public class ClientService {
         return resultat;
     }
 
-    public List<Client> listerClients() {
+    public List<Client> listClients() {
         List<Client> resultat = null;
         JpaUtil.creerContextePersistance();
         try {
@@ -125,6 +125,11 @@ public class ClientService {
                 consultationDao.creer(consultation);
                 result = consultation.getId();
                 
+                
+                employee.setAvailable(false);
+                employeeDao.updateEmployee(employee);
+                JpaUtil.validerTransaction();
+                
                 Message.envoyerNotification(employee.getPhone(), ""
                         + "Bonjour " + employee.getFirstName() + 
                         ". Consultation requise pour "
@@ -133,14 +138,11 @@ public class ClientService {
                         + client.getLastName().toUpperCase()
                         + ". Médium à incarner : " + medium.getName());
                 
-                employee.setAvailable(false);
-                employeeDao.updateEmployee(employee);
-                JpaUtil.validerTransaction();
             } else {
                 //TODO Handle no available employees
             }
         } catch(Exception e) {
-            
+            e.printStackTrace();
         } finally {
             JpaUtil.fermerContextePersistance();
         }

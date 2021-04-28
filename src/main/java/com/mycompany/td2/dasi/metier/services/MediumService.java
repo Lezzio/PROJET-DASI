@@ -21,6 +21,8 @@ public class MediumService {
     private final MediumDao clientDao = new MediumDao();
     protected MediumDao mediumDao = new MediumDao();
 
+    //TODO Add search by id
+    
     public void initialiserMedium(Medium medium) {
         JpaUtil.creerContextePersistance();
         try {

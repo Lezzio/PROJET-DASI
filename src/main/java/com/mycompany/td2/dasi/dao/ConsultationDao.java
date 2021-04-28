@@ -19,8 +19,6 @@ import javax.persistence.TypedQuery;
  */
 public class ConsultationDao {
 
-    
-    
     public void creer(Consultation consultation) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(consultation);
@@ -36,16 +34,12 @@ public class ConsultationDao {
         em.remove(consultation);
     }
     
-    public Consultation findByMedium(Medium medium) {
+    public List<Consultation> findByMedium(Medium medium) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.medium = :medium", Consultation.class);
         query.setParameter("medium", medium.getId()); // correspond au paramètre ":mail" dans la requête
         List<Consultation> mediumsConsultations = query.getResultList();
-        Consultation result = null;
-        if (!mediumsConsultations.isEmpty()) {
-            result = mediumsConsultations.get(0); // premier de la liste
-        }
-        return result;
+        return mediumsConsultations;
     }
     
     public Consultation findByEmployee(Employee employee) {
@@ -59,6 +53,7 @@ public class ConsultationDao {
         }
         return result;
     }
+    
     public Consultation findHistoryClient(Client client) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.client = :client AND c.endDate IS NOT NULL ORDER BY c.endDate ASC", Consultation.class);

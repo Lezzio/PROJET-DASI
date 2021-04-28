@@ -116,4 +116,16 @@ public class Employee {
     public void addAppointmentCount(int i) {
         appointmentCount += i;
     }
+
+    public boolean isSimilar(Employee employee) {
+        return this.id.equals(employee.getId())
+        && this.gender.equals(employee.gender)
+        && this.firstName.equals(employee.firstName)
+        && this.lastName.equals(employee.lastName)
+        && this.mail.equals(employee.mail)
+        && this.password.equals(employee.password)
+        && this.phone.equals(employee.phone)
+        && this.available == employee.available
+        && this.appointmentCount == employee.getAppointmentCount();
+    }
 }

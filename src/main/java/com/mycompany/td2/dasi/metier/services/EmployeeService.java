@@ -8,11 +8,14 @@ package com.mycompany.td2.dasi.metier.services;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.AstralProfile;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.td2.dasi.utils.AstroNetApi;
 import com.mycompany.td2.dasi.utils.Message;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +42,44 @@ public class EmployeeService {
             }
         } catch (Exception ex) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service authentifierEmployee(mail,motDePasse)", ex);
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
+    
+    /**
+     * Only needed for test purposes
+     * @param employee
+     * @return 
+     */
+    public Long signupEmployee(Employee employee) {
+        Long resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            JpaUtil.ouvrirTransaction();
+            employeeDao.creer(employee);
+            JpaUtil.validerTransaction();
+            resultat = employee.getId();
+            //Notifier l'inscription
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service signupEmployee(employee)", ex);
+            JpaUtil.annulerTransaction();
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
+
+    public Employee searchEmployeeById(Long id) {
+        Employee resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            resultat = employeeDao.chercherParId(id);
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service searchClientById(id)", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();
@@ -79,6 +120,7 @@ public class EmployeeService {
                                                            Vous pouvez dès à présent me contacter au 06 55 44 77 88. A tout de suite ! Médiumiquement
                                                            vôtre, Mme Irma""");
             
+            JpaUtil.validerTransaction();
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getEmployeeActiveConsultation(Employee employee)", e);
         } finally {
@@ -86,18 +128,21 @@ public class EmployeeService {
         }
     }
     
+    /*
     public void denyConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
         try {
             employee.setAvailable(true);
             employeeDao.updateEmployee(employee);
             consultationDao.removeConsultation(consultation);
+            JpaUtil.validerTransaction();
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service denyConsultation(Employee employee, Consultation consultation", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
     }
+    */
     
     public void endConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
@@ -108,6 +153,7 @@ public class EmployeeService {
             Date now = new Date();
             consultation.setEndDate(now);
             consultationDao.updateConsultation(consultation);
+            JpaUtil.validerTransaction();
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service denyConsultation(Employee employee, Consultation consultation", e);
         } finally {

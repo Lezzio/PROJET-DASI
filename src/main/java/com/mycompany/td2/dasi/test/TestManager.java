@@ -6,6 +6,7 @@
 package com.mycompany.td2.dasi.test;
 
 import com.mycompany.td2.dasi.test.list.ClientAccountTest;
+import com.mycompany.td2.dasi.test.list.EmployeeAccountTest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author aguigal
  */
-public class UnitTestManager {
+public class TestManager {
     
     private static List<Test> tests = new ArrayList<>();
     private static List<Test> failedTests = new ArrayList<>();
@@ -31,7 +32,7 @@ public class UnitTestManager {
         
         int testsCount = tests.size();
         int passedCount = testsCount - failedTests.size();
-        System.out.println("Tests : " + passedCount + "/" + testsCount);
+        System.out.println("Tests : " + passedCount + "/" + testsCount + " passed");
         failedTests.forEach(test -> System.out.println("Failed : " + test.getName()));
         
     }
@@ -42,6 +43,7 @@ public class UnitTestManager {
     
     public static void initTests() {
         ClientAccountTest clientAccountTest = new ClientAccountTest();
+        EmployeeAccountTest employeeAccountTest = new EmployeeAccountTest();
     }
     
 }

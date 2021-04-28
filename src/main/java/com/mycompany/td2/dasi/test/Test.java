@@ -12,7 +12,7 @@ package com.mycompany.td2.dasi.test;
 public abstract class Test {
     
     protected Test() {
-        UnitTestManager.addTest(this);
+        TestManager.addTest(this);
     }
     
     /**

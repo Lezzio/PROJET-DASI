@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Client {
     private String mail;
     private String password;
     private String phone;
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
     @Embedded
     private AstralProfile astralProfile;
@@ -108,6 +111,16 @@ public class Client {
     
     public String getPhone() {
         return phone;
+    }
+
+    public boolean isSimilar(Client client) {
+        return this.id.equals(client.getId())
+        && this.firstName.equals(client.firstName)
+        && this.lastName.equals(client.lastName)
+        && this.mail.equals(client.mail)
+        && this.password.equals(client.password)
+        && this.phone.equals(client.phone)
+        && this.birthDate.equals(client.birthDate);
     }
     
 }

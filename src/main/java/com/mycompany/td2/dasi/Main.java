@@ -9,7 +9,7 @@ import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.ClientService;
 import com.mycompany.td2.dasi.metier.services.MediumService;
-import com.mycompany.td2.dasi.test.UnitTestManager;
+import com.mycompany.td2.dasi.test.TestManager;
 import com.mycompany.td2.dasi.utils.Administration;
 import java.rmi.RemoteException;
 import java.util.Iterator;
@@ -30,9 +30,7 @@ public class Main {
         JpaUtil.init();
         admin.initialiserEmployeeMedium();
         
-        UnitTestManager.testApplications();
-        
-        
+        TestManager.testApplications();
         
                 /*
 
