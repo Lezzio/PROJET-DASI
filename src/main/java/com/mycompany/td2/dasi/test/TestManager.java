@@ -6,6 +6,7 @@
 package com.mycompany.td2.dasi.test;
 
 import com.mycompany.td2.dasi.test.list.ClientAccountTest;
+import com.mycompany.td2.dasi.test.list.ConsultationTest;
 import com.mycompany.td2.dasi.test.list.EmployeeAccountTest;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class TestManager {
     public static void initTests() {
         ClientAccountTest clientAccountTest = new ClientAccountTest();
         EmployeeAccountTest employeeAccountTest = new EmployeeAccountTest();
+        ConsultationTest consultationTest = new ConsultationTest();
     }
     
 }

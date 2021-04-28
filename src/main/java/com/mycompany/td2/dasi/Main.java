@@ -54,8 +54,7 @@ public class Main {
         employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
     }*/
     
-    public static void afficherListeMediums() throws java.rmi.RemoteException
-    {
+    public static void afficherListeMediums() throws java.rmi.RemoteException {
       List<Medium> listeMedium = mediumService.listerMediums();
       for (Iterator iter = listeMedium.iterator(); iter.hasNext();)
       {

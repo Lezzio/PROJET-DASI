@@ -31,7 +31,7 @@ public class EmployeeAccountTest extends Test {
         boolean firstAccountPassed = employeeAccountTests(employee1);
         if(!firstAccountPassed) return false;
         
-        Employee employee2 = new Employee("male", "Rahim", "Belatech", "rahim.belatech@insa-lyon.fr", "ramadan123", "**********");
+        Employee employee2 = new Employee("male", "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
         boolean secondAccountPassed = employeeAccountTests(employee2);
         if(!secondAccountPassed) return false;
         
