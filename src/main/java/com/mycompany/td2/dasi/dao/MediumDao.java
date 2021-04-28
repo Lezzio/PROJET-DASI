@@ -17,6 +17,7 @@ import javax.persistence.TypedQuery;
 public class MediumDao {
     
     public void creer(Medium medium) {
+        JpaUtil.creerContextePersistance();
         try {
         JpaUtil.ouvrirTransaction();
         EntityManager em = JpaUtil.obtenirContextePersistance();
@@ -26,11 +27,13 @@ public class MediumDao {
             e.printStackTrace();
         }
     }
+    
     /*
     public Medium chercherParId(Long mediumId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Medium.class, mediumId); // renvoie null si l'identifiant n'existe pas
-    }*/
+    }
+    */
 
     public List<Medium> listerMediums() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
