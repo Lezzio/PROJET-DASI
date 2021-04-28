@@ -48,8 +48,8 @@ public class Administration {
     public List<String> lesMessagesInspiration(int choixAmour, int choixSante, int choixTravail){
         List<String> listeMessage = new ArrayList<String>();
         int numRandomMessage = 2;
+        numRandomMessage = (int)(Math.random() * 2);
         switch(choixAmour){
-            numRandomMessage = (int)(Math.random() * 2);
             case 1 : 
                 if(numRandomMessage == 0){
                     listeMessage.add("Il n'y a rien de plus précieux en ce monde que le sentiment d'exister pour quelqu'un.");
@@ -81,8 +81,8 @@ public class Administration {
                 break;
         }
         
+        numRandomMessage = (int)(Math.random() * 2);
         switch(choixSante){
-            numRandomMessage = (int)(Math.random() * 2);
             case 1 : 
                 if(numRandomMessage == 0){
                     listeMessage.add("Qui est en bonne santé est riche sans le savoir.");
@@ -113,8 +113,8 @@ public class Administration {
                 break;
         }
        
+        numRandomMessage = (int)(Math.random()*2);
         switch(choixTravail){
-            numRandomMessage = (int)(Math.random()*2);
             case 1 : 
                 if(numRandomMessage == 0){
                     listeMessage.add("C'est travail qui nourrit l'homme.");
