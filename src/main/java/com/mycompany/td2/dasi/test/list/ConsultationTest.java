@@ -40,20 +40,45 @@ public class ConsultationTest extends Test {
         clientService.signupClient(client1);
         Employee employee1 = new Employee("female", "Claire", "Penaud", "claire.penaud@insa-lyon.fr", "tastyoctodon1", "0782977583");
         employeeService.signupEmployee(employee1);
-        Employee employee2 = new Employee("male", "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
+        Employee employee2 = new Employee("male", "Thibaud", "Collard", "thibaud.collard@gmail.com", "coco09", "0464652212");
         employeeService.signupEmployee(employee2);
         
         Medium medium = new Medium("Prof Tran le medium oklm", "Prof Tran", "male");
         mediumDao.creer(medium);
         clientService.askConsultation(client1, medium);
         
-        Consultation consultation = employeeService.getEmployeeActiveConsultation(employee1);
-        boolean pending = consultation.isPending();
-        boolean over = consultation.isOver();
-        boolean live = consultation.isLive();
+        employee2 = employeeService.searchEmployeeById(employee2.getId());
+        if(employee2.isAvailable()) {
+            System.out.println("Failed test : available state to false for the employee incoherence");
+            return false;
+        }
         
-        if(!pending || over || live) {
-            System.out.println("Failed test : pending consultation state for the employee");
+        
+        Consultation consultation = employeeService.getEmployeeActiveConsultation(employee2);
+        boolean pending = consultation.isPending();
+        
+        if(!pending) {
+            System.out.println("Failed test : pending consultation state for the employee incoherence");
+            return false;
+        }
+        
+        employeeService.acceptConsultation(employee2, consultation);
+        
+        if(!consultation.isLive()) {
+            System.out.println("Failed test : live consultation state for the employee incoherence");
+            return false;
+        }
+        
+        
+        employeeService.endConsultation(employee2, consultation);
+        
+        if(!consultation.isOver()) {
+            System.out.println("Failed test : over consultation state for the employee incoherence");
+            return false;
+        }
+        if(!employee2.isAvailable()) {
+            System.out.println("Failed test : available state to true for the employee incoherence");
+            return false;
         }
         
         

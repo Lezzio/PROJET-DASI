@@ -109,6 +109,7 @@ public class EmployeeService {
     public void acceptConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
         try {
+            JpaUtil.ouvrirTransaction();
             Date now = new Date();
             consultation.setStartDate(now);
             consultationDao.updateConsultation(consultation);
@@ -147,6 +148,7 @@ public class EmployeeService {
     public void endConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
         try {
+            JpaUtil.ouvrirTransaction();
             employee.setAvailable(true);
             employee.addAppointmentCount(1);
             employeeDao.updateEmployee(employee);

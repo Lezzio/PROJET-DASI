@@ -112,6 +112,7 @@ public class ClientService {
         Long result = null;
         JpaUtil.creerContextePersistance();
         try {
+            JpaUtil.ouvrirTransaction();
             //Find available employee to embody the medium
             List<Employee> availableMatchingEmployees = employeeDao.availableEmployeesMatchingMedium(medium);
             //Take the one with least appointment count (ascendant ordered list)
@@ -121,7 +122,6 @@ public class ClientService {
                 Employee employee = availableMatchingEmployees.get(0);
                 //Create consultation
                 Consultation consultation = new Consultation(client, medium, employee);
-                JpaUtil.ouvrirTransaction();
                 
                 consultationDao.creer(consultation);
                 result = consultation.getId();
@@ -129,6 +129,8 @@ public class ClientService {
                 
                 employee.setAvailable(false);
                 employeeDao.updateEmployee(employee);
+                
+                
                 JpaUtil.validerTransaction();
                 
                 Message.envoyerNotification(employee.getPhone(), ""
@@ -141,6 +143,7 @@ public class ClientService {
                 
             } else {
                 //TODO Handle no available employees
+                System.out.println("No matching employee for the asked medium");
             }
         } catch(Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service askConsultation(Client client, Medium medium)", e);

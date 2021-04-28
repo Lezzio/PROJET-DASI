@@ -42,6 +42,7 @@ public class Employee {
         this.mail = mail;
         this.password = password;
         this.phone = phone;
+        this.available = true;
     }
     
     public boolean isAvailable() {
