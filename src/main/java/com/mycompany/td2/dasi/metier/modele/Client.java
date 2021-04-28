@@ -105,7 +105,7 @@ public class Client {
         this.phone = phone;
     }
     
-    public String getPhone(String phone) {
+    public String getPhone() {
         return phone;
     }
     

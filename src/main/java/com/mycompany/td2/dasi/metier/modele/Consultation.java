@@ -96,4 +96,14 @@ public class Consultation {
         return employee;
     }
     
+    public boolean isPending() {
+        return startDate == null && endDate == null;
+    }
+    public boolean isLive() {
+        return startDate != null && endDate == null;
+    }
+    public boolean isOver() {
+        return startDate != null && endDate != null;
+    }
+    
 }

@@ -132,10 +132,12 @@ public class ClientService {
                         + client.getFirstName() + " "
                         + client.getLastName().toUpperCase()
                         + ". Médium à incarner : " + medium.getName());
-                employee.setAvailable(false);
                 
+                employee.setAvailable(false);
                 employeeDao.updateEmployee(employee);
                 JpaUtil.validerTransaction();
+            } else {
+                //TODO Handle no available employees
             }
         } catch(Exception e) {
             

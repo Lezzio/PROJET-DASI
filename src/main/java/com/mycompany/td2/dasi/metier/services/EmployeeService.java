@@ -8,8 +8,10 @@ package com.mycompany.td2.dasi.metier.services;
 import com.mycompany.td2.dasi.dao.ConsultationDao;
 import com.mycompany.td2.dasi.dao.EmployeeDao;
 import com.mycompany.td2.dasi.dao.JpaUtil;
+import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
+import com.mycompany.td2.dasi.utils.Message;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,19 +65,25 @@ public class EmployeeService {
         return result;
     }
     
-    public Consultation acceptConsultation(Employee employee, Consultation consultation) {
+    public void acceptConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
         try {
             Date now = new Date();
             consultation.setStartDate(now);
             consultationDao.updateConsultation(consultation);
+            
+            //Notify the consultation is accepted
+            Client client = consultation.getClient();
+            Message.envoyerNotification(client.getPhone(), """
+                                                            Bonjour Alice. J’ai bien reçu votre demande de consultation du 14/02/2020 à 12h10.
+                                                           Vous pouvez dès à présent me contacter au 06 55 44 77 88. A tout de suite ! Médiumiquement
+                                                           vôtre, Mme Irma""");
+            
         } catch (Exception e) {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getEmployeeActiveConsultation(Employee employee)", e);
-            consultation = null;
         } finally {
             JpaUtil.fermerContextePersistance();
         }
-        return consultation;
     }
     
     public void denyConsultation(Employee employee, Consultation consultation) {
@@ -95,6 +103,7 @@ public class EmployeeService {
         JpaUtil.creerContextePersistance();
         try {
             employee.setAvailable(true);
+            employee.addAppointmentCount(1);
             employeeDao.updateEmployee(employee);
             Date now = new Date();
             consultation.setEndDate(now);
