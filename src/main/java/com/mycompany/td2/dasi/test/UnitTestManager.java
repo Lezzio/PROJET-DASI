@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.test;
 
+import com.mycompany.td2.dasi.test.list.ClientAccountTest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +15,15 @@ import java.util.List;
  */
 public class UnitTestManager {
     
-    List<Test> tests = new ArrayList<>();
-    List<Test> failedTests = new ArrayList<>();
+    private static List<Test> tests = new ArrayList<>();
+    private static List<Test> failedTests = new ArrayList<>();
     
-    public void testApplications() {
+    public static void testApplications() {
+        initTests();
         
         tests.forEach(unitTest -> {
             boolean valid = unitTest.test();
+            System.out.println("Called 1 test for " + unitTest.getName());
             if (!valid) {
                 failedTests.add(unitTest);
             }
@@ -31,6 +34,14 @@ public class UnitTestManager {
         System.out.println("Tests : " + passedCount + "/" + testsCount);
         failedTests.forEach(test -> System.out.println("Failed : " + test.getName()));
         
+    }
+
+    public static void addTest(Test test) {
+        tests.add(test);
+    }
+    
+    public static void initTests() {
+        ClientAccountTest clientAccountTest = new ClientAccountTest();
     }
     
 }

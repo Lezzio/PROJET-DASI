@@ -9,17 +9,21 @@ package com.mycompany.td2.dasi.test;
  *
  * @author aguigal
  */
-public interface Test {
+public abstract class Test {
+    
+    protected Test() {
+        UnitTestManager.addTest(this);
+    }
     
     /**
      * @return String describing the test intent
      */
-    public String getName();
+    public abstract String getName();
     
     /**
      * Call the unit test
      * @return true if passed, false otherwise
      */
-    public boolean test();
+    public abstract boolean test();
     
 }

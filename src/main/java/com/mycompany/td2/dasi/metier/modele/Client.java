@@ -5,7 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class Client {
     private Long id;
     private String firstName;
     private String lastName;
+    private String civility;
     @Column(unique = true)
     private String mail;
     private String password;
-    private String civility;
     private String phone;
     private Date birthDate;
     @Embedded
@@ -39,9 +39,10 @@ public class Client {
     public Client() {
         
     }
-    public Client(String lastName, String firstName, String mail, String password, Date birthDate, String phone) {
+    public Client(String lastName, String firstName, String civility, String mail, String password, Date birthDate, String phone) {
         this.lastName = lastName;
         this.firstName = firstName;
+        this.civility = civility;
         this.mail = mail;
         this.password = password;
         this.birthDate = birthDate;

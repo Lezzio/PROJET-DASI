@@ -9,6 +9,7 @@ import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.ClientService;
 import com.mycompany.td2.dasi.metier.services.MediumService;
+import com.mycompany.td2.dasi.test.UnitTestManager;
 import com.mycompany.td2.dasi.utils.Administration;
 import java.rmi.RemoteException;
 import java.util.Iterator;
@@ -27,20 +28,23 @@ public class Main {
     public static void main(String[] args) throws RemoteException {
         System.out.println("TD2 - DASI init");
         JpaUtil.init();
-        
-        //testerInscriptionClient();
-        
-        
         admin.initialiserEmployeeMedium();
         
+        UnitTestManager.testApplications();
+        
+        
+        
+                /*
+
         afficherListeMediums();
         
         List<String> listeMessage = admin.lesMessagesInspiration(1, 3, 4);
         for(String m : listeMessage){
             System.out.println(m);
         }
+        //testerInscriptionClient();
         
-        
+        */
         JpaUtil.destroy();
     }
          /*public static void testerInscriptionClient() {
