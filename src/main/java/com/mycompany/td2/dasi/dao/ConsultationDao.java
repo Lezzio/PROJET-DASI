@@ -19,12 +19,12 @@ import javax.persistence.TypedQuery;
  */
 public class ConsultationDao {
 
-    public void creer(Consultation consultation) {
+    public void create(Consultation consultation) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(consultation);
     }
     
-    public Consultation chercherParId(Long consultationId) {
+    public Consultation searchById(Long consultationId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Consultation.class, consultationId); // renvoie null si l'identifiant n'existe pas
     }
@@ -36,7 +36,7 @@ public class ConsultationDao {
     
     public List<Consultation> findByMedium(Medium medium) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
-        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.medium = :medium", Consultation.class);
+        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.medium.id = :medium", Consultation.class);
         query.setParameter("medium", medium.getId()); // correspond au paramètre ":mail" dans la requête
         List<Consultation> mediumsConsultations = query.getResultList();
         return mediumsConsultations;
@@ -52,6 +52,14 @@ public class ConsultationDao {
             result = employeeConsultations.get(0); // premier de la liste
         }
         return result;
+    }
+    
+    public List<Medium> findByClient(Client client) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Medium> query = em.createQuery("SELECT c.medium FROM Consultation c WHERE c.client.id = :client", Medium.class);
+        query.setParameter("client", client.getId()); // correspond au paramètre ":mail" dans la requête
+        List<Medium> clientParMediumConsultations = query.getResultList();
+        return clientParMediumConsultations;
     }
     
     public Consultation findHistoryClient(Client client) {
@@ -74,7 +82,6 @@ public class ConsultationDao {
     public Consultation searchActiveEmployeeConsultation(Employee employee) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.employee = :employee AND c.endDate IS NULL", Consultation.class);
-        //TODO Precise if live or pending (start date or not)
         query.setParameter("employee", employee); // correspond au paramètre ":mail" dans la requête
         List<Consultation> activeConsultations = query.getResultList();
         Consultation result = null;

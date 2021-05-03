@@ -6,7 +6,8 @@
 package com.mycompany.td2.dasi.test.list;
 
 import com.mycompany.td2.dasi.metier.modele.Employee;
-import com.mycompany.td2.dasi.metier.services.EmployeeService;
+import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.metier.services.EntityService;
 import com.mycompany.td2.dasi.test.Test;
 
 /**
@@ -15,8 +16,8 @@ import com.mycompany.td2.dasi.test.Test;
  */
 public class EmployeeAccountTest extends Test {
     
-    
-    private final EmployeeService employeeService = new EmployeeService();
+    private final EntityService entityService = new EntityService();
+    private final AuthentificationService authentificationService = new AuthentificationService();
         
     @Override
     public String getName() {
@@ -42,10 +43,10 @@ public class EmployeeAccountTest extends Test {
     public boolean employeeAccountTests(Employee employee) {
         
         //Sign up
-        employeeService.signupEmployee(employee);
+        authentificationService.signupEmployee(employee);
         
         //Search client by id
-        Employee fetchedEmployee = employeeService.searchEmployeeById(employee.getId());
+        Employee fetchedEmployee = entityService.searchEmployeeById(employee.getId());
         
         System.out.println(fetchedEmployee);
         System.out.println(fetchedEmployee.isSimilar(employee));
@@ -56,7 +57,7 @@ public class EmployeeAccountTest extends Test {
         }
         
         //Sign in
-        Employee authentificatedClient = employeeService.authentifierEmployee(employee.getMail(), employee.getPassword());
+        Employee authentificatedClient = authentificationService.authentificateEmployee(employee.getMail(), employee.getPassword());
         
         if(authentificatedClient == null || !authentificatedClient.isSimilar(employee)) {
             System.out.println("Failed employee authentification not null and similar");

@@ -9,10 +9,11 @@ import com.mycompany.td2.dasi.dao.MediumDao;
 import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
-import com.mycompany.td2.dasi.metier.services.ClientService;
-import com.mycompany.td2.dasi.metier.services.EmployeeService;
 import com.mycompany.td2.dasi.test.Test;
 import com.mycompany.td2.dasi.metier.modele.Medium;
+import com.mycompany.td2.dasi.metier.services.AppointmentService;
+import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.metier.services.EntityService;
 import java.util.Date;
 
 /**
@@ -21,40 +22,39 @@ import java.util.Date;
  */
 public class ConsultationTest extends Test {
     
-    
-    private final ClientService clientService = new ClientService();
-    private final EmployeeService employeeService = new EmployeeService();
+    private final EntityService entityService = new EntityService();
+    private final AuthentificationService authentificationService = new AuthentificationService();
+    private final AppointmentService appointmentService = new AppointmentService();
     private final MediumDao mediumDao = new MediumDao();
         
     @Override
     public String getName() {
         return "ConsultationTest : Tests for the consultation management procedure and sequence";
     }
-    
 
     @Override
     public boolean test() {
         
         //Sign up
         Client client1 = new Client("Maxime", "Tarantino", "M.", "maxime.tarantino@gmail.com", "tatata", new Date(), "0670235025");
-        clientService.signupClient(client1);
+        authentificationService.signupClient(client1);
         Employee employee1 = new Employee("female", "Claire", "Penaud", "claire.penaud@insa-lyon.fr", "tastyoctodon1", "0782977583");
-        employeeService.signupEmployee(employee1);
+        authentificationService.signupEmployee(employee1);
         Employee employee2 = new Employee("male", "Thibaud", "Collard", "thibaud.collard@gmail.com", "coco09", "0464652212");
-        employeeService.signupEmployee(employee2);
+        authentificationService.signupEmployee(employee2);
         
         Medium medium = new Medium("Prof Tran le medium oklm", "Prof Tran", "male");
         mediumDao.creer(medium);
-        clientService.askConsultation(client1, medium);
+        appointmentService.askConsultation(client1, medium);
         
-        employee2 = employeeService.searchEmployeeById(employee2.getId());
+        employee2 = entityService.searchEmployeeById(employee2.getId());
         if(employee2.isAvailable()) {
             System.out.println("Failed test : available state to false for the employee incoherence");
             return false;
         }
         
         
-        Consultation consultation = employeeService.getEmployeeActiveConsultation(employee2);
+        Consultation consultation = appointmentService.getEmployeeActiveConsultation(employee2);
         boolean pending = consultation.isPending();
         
         if(!pending) {
@@ -62,15 +62,14 @@ public class ConsultationTest extends Test {
             return false;
         }
         
-        employeeService.acceptConsultation(employee2, consultation);
+        appointmentService.acceptConsultation(employee2, consultation);
         
         if(!consultation.isLive()) {
             System.out.println("Failed test : live consultation state for the employee incoherence");
             return false;
         }
         
-        
-        employeeService.endConsultation(employee2, consultation);
+        appointmentService.endConsultation(employee2, consultation);
         
         if(!consultation.isOver()) {
             System.out.println("Failed test : over consultation state for the employee incoherence");
@@ -80,7 +79,6 @@ public class ConsultationTest extends Test {
             System.out.println("Failed test : available state to true for the employee incoherence");
             return false;
         }
-        
         
         
         return true;

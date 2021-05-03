@@ -5,8 +5,9 @@
  */
 package com.mycompany.td2.dasi.test.list;
 
-import com.mycompany.td2.dasi.metier.services.ClientService;
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.services.AuthentificationService;
+import com.mycompany.td2.dasi.metier.services.EntityService;
 import com.mycompany.td2.dasi.test.Test;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,8 @@ import java.util.List;
  */
 public class ClientAccountTest extends Test {
     
-    private final ClientService clientService = new ClientService();
+    private final EntityService entityService = new EntityService();
+    private final AuthentificationService authentificationService = new AuthentificationService();
         
     @Override
     public String getName() {
@@ -33,7 +35,7 @@ public class ClientAccountTest extends Test {
         if(!firstAccountPassed) return false;
         
          //List clients after first insert
-        List<Client> clientList1 = clientService.listClients();
+        List<Client> clientList1 = entityService.listClients();
         
         if(clientList1.size() != 1) {
             System.out.println("Failed client list not right size");
@@ -45,13 +47,12 @@ public class ClientAccountTest extends Test {
         if(!secondAccountPassed) return false;
         
          //List clients after second insert
-        List<Client> clientList2 = clientService.listClients();
+        List<Client> clientList2 = entityService.listClients();
         
         if(clientList2.size() != 2) {
             System.out.println("Failed client list not right size");
             return false;
         }
-       
        
         return true;
     }
@@ -59,10 +60,10 @@ public class ClientAccountTest extends Test {
     public boolean clientAccountTests(Client client) {
         
         //Sign up
-        clientService.signupClient(client);
+        authentificationService.signupClient(client);
         
         //Search client by id
-        Client fetchedClient = clientService.searchClientById(client.getId());
+        Client fetchedClient = entityService.searchClientById(client.getId());
         
         if(fetchedClient == null || !fetchedClient.isSimilar(client)) {
             System.out.println("Failed fetched client not null and similar");
@@ -70,7 +71,7 @@ public class ClientAccountTest extends Test {
         }
         
         //Sign in
-        Client authentificatedClient = clientService.authentificateClient(client.getMail(), client.getPassword());
+        Client authentificatedClient = authentificationService.authentificateClient(client.getMail(), client.getPassword());
         
         if(authentificatedClient == null || !authentificatedClient.isSimilar(client)) {
             System.out.println("Failed client authentification not null and similar");
@@ -79,7 +80,5 @@ public class ClientAccountTest extends Test {
         
         return true;
     }
-    
-    
     
 }

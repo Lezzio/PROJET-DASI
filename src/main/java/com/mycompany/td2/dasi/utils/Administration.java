@@ -5,14 +5,12 @@
  */
 package com.mycompany.td2.dasi.utils;
 
-import static com.mycompany.td2.dasi.Main.mediumService;
 import com.mycompany.td2.dasi.metier.modele.Astrolog;
 import com.mycompany.td2.dasi.metier.modele.Cartomancian;
 import com.mycompany.td2.dasi.metier.modele.Spirite;
-import com.mycompany.td2.dasi.metier.services.MediumService;
+import com.mycompany.td2.dasi.metier.services.EntityService;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Math;
 
 /**
  *
@@ -20,9 +18,9 @@ import java.lang.Math;
  */
 public class Administration {
     
-    public static MediumService mediumService = new MediumService();
+    public static EntityService entityService = new EntityService();
     
-    public void initialiserEmployeeMedium() {
+    public void initialiserMedium() {
 
         Spirite spirite1 = new Spirite("Spécialiste des grandes conversations au-delà de TOUTES les frontières.",
         "Gwenaëlle", "F", "Boule de cristal");
@@ -36,13 +34,12 @@ public class Administration {
         Astrolog astrolog2 = new Astrolog("Basée à Champigny-sur-Marne, Serena vous révèlera votre avenir pour éclairer votre passé.", "Serena", "F", "École Normale Supérieure d’Astrologie (ENS-Astro)", "2006");
 
 
-        mediumService.initialiserMedium(spirite1);
-        mediumService.initialiserMedium(spirite2);
-        mediumService.initialiserMedium(cartomancian1);
-        mediumService.initialiserMedium(cartomancian2);
-        mediumService.initialiserMedium(astrolog1);
-        mediumService.initialiserMedium(astrolog2);
-        
+        entityService.initializeMediums(spirite1);
+        entityService.initializeMediums(spirite2);
+        entityService.initializeMediums(cartomancian1);
+        entityService.initializeMediums(cartomancian2);
+        entityService.initializeMediums(astrolog1);
+        entityService.initializeMediums(astrolog2);
     }
     
     public List<String> lesMessagesInspiration(int choixAmour, int choixSante, int choixTravail){

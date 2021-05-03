@@ -20,15 +20,13 @@ import java.util.List;
  */
 public class Main {
     
-    public static ClientService clientService = new ClientService();
     //public static EmployeeService employeeService = new EmployeeService();
-    public static MediumService mediumService = new MediumService();
     public static Administration admin = new Administration();
     
     public static void main(String[] args) throws RemoteException {
         System.out.println("TD2 - DASI init");
         JpaUtil.init();
-        admin.initialiserEmployeeMedium();
+        admin.initialiserMedium();
         
         TestManager.testApplications();
         

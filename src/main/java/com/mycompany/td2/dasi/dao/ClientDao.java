@@ -11,17 +11,17 @@ import javax.persistence.TypedQuery;
  */
 public class ClientDao {
     
-    public void creer(Client client) {
+    public void create(Client client) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(client);
     }
     
-    public Client chercherParId(Long clientId) {
+    public Client searchById(Long clientId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Client.class, clientId); // renvoie null si l'identifiant n'existe pas
     }
     
-    public Client chercherParMail(String clientMail) {
+    public Client searchByMail(String clientMail) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c WHERE c.mail = :mail", Client.class);
         query.setParameter("mail", clientMail); // correspond au paramètre ":mail" dans la requête
@@ -33,7 +33,7 @@ public class ClientDao {
         return result;
     }
     
-    public List<Client> listerClients() {
+    public List<Client> listClients() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Client> query = em.createQuery("SELECT c FROM Client c ORDER BY c.lastName ASC, c.firstName ASC", Client.class);
         return query.getResultList();

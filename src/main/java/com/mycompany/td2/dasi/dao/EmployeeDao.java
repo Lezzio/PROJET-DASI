@@ -17,17 +17,17 @@ import javax.persistence.TypedQuery;
  */
 public class EmployeeDao {
     
-    public void creer(Employee employee) {
+    public void create(Employee employee) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(employee);
     }
     
-    public Employee chercherParId(Long employeeId) {
+    public Employee searchById(Long employeeId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         return em.find(Employee.class, employeeId); // renvoie null si l'identifiant n'existe pas
     }
     
-    public Employee chercherParMail(String employeeMail) {
+    public Employee searchByMail(String employeeMail) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.mail = :mail", Employee.class);
         query.setParameter("mail", employeeMail); // correspond au paramètre ":mail" dans la requête
