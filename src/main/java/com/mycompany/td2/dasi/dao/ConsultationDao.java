@@ -102,5 +102,4 @@ public class ConsultationDao {
         em.remove(consultation); //TODO Check if working
     }
     
-    
 }

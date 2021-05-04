@@ -7,8 +7,6 @@ package com.mycompany.td2.dasi;
 
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.metier.modele.Medium;
-import com.mycompany.td2.dasi.metier.services.ClientService;
-import com.mycompany.td2.dasi.metier.services.MediumService;
 import com.mycompany.td2.dasi.test.TestManager;
 import com.mycompany.td2.dasi.utils.Administration;
 import java.rmi.RemoteException;
@@ -51,15 +49,5 @@ public class Main {
         Employee employee = new Employee("Autre", "yasmine", "souabi", "yasmine.souabi", "jesuisunemerde");
         employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
     }*/
-    
-    public static void afficherListeMediums() throws java.rmi.RemoteException {
-      List<Medium> listeMedium = mediumService.listerMediums();
-      for (Iterator iter = listeMedium.iterator(); iter.hasNext();)
-      {
-        String ch2 = iter.next().toString();
-        System.out.println(ch2)  ;
-      }
- 
-  }
     
 }

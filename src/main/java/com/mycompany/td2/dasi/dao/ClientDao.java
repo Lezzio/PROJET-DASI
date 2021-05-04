@@ -1,6 +1,7 @@
 package com.mycompany.td2.dasi.dao;
 
 import com.mycompany.td2.dasi.metier.modele.Client;
+import com.mycompany.td2.dasi.metier.modele.Employee;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -39,5 +40,12 @@ public class ClientDao {
         return query.getResultList();
     }
     
-    // modifier / supprimer  ... 
+    public List<Client> findClientsByEmployee(Employee employee) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Client> query = em.createQuery("SELECT DISTINCT(c.client) FROM Consultation c WHERE c.employee.id = :employee", Client.class);
+        query.setParameter("employee", employee.getId()); // correspond au paramètre ":mail" dans la requête
+        List<Client> clientConsultatesParEmployee = query.getResultList();
+        return clientConsultatesParEmployee;
+    }
+    
 }

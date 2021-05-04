@@ -25,7 +25,7 @@ public class TestManager {
         
         tests.forEach(unitTest -> {
             boolean valid = unitTest.test();
-            System.out.println("Called 1 test for " + unitTest.getName());
+            System.out.println("Called test for " + unitTest.getName());
             if (!valid) {
                 failedTests.add(unitTest);
             }
