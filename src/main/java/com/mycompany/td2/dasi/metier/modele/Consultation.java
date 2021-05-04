@@ -37,8 +37,13 @@ public class Consultation {
         this.medium = medium;
         this.employee = employee;
     }
-    public Consultation(Date startDate, Date endDate, String commentary, Medium medium, Employee employee, Client client) {
-        
+    public Consultation(Date startDate, Date endDate, String commentary, Client client, Medium medium, Employee employee) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.commentary = commentary;
+        this.client = client;
+        this.medium = medium;
+        this.employee = employee;
     }
     
     public Long getId() {

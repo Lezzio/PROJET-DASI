@@ -6,12 +6,10 @@
 package com.mycompany.td2.dasi;
 
 import com.mycompany.td2.dasi.dao.JpaUtil;
-import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.test.TestManager;
 import com.mycompany.td2.dasi.utils.Administration;
 import java.rmi.RemoteException;
-import java.util.Iterator;
-import java.util.List;
+
 
 /**
  * @author aguigal
@@ -24,8 +22,8 @@ public class Main {
     public static void main(String[] args) throws RemoteException {
         System.out.println("TD2 - DASI init");
         JpaUtil.init();
-        admin.initialiserMedium();
         
+        admin.initializeMedium();
         TestManager.testApplications();
         
                 /*

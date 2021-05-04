@@ -19,7 +19,7 @@ public class ClientDao {
     
     public Client searchById(Long clientId) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
-        return em.find(Client.class, clientId); // renvoie null si l'identifiant n'existe pas
+        return em.find(Client.class, clientId); //Return null if doesn't exist
     }
     
     public Client searchByMail(String clientMail) {
@@ -29,7 +29,7 @@ public class ClientDao {
         List<Client> clients = query.getResultList();
         Client result = null;
         if (!clients.isEmpty()) {
-            result = clients.get(0); // premier de la liste
+            result = clients.get(0); //Return matched client by mail
         }
         return result;
     }

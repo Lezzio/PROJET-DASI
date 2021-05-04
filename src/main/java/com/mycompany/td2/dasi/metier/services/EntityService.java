@@ -41,6 +41,20 @@ public class EntityService {
         }
         return resultat;
     }
+    
+    public Medium searchMediumById(Long id) {
+        Medium resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            resultat = mediumDao.searchById(id);
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service searchMediumById(id)", ex);
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
 
     public List<Client> listClients() {
         List<Client> resultat = null;
@@ -48,7 +62,21 @@ public class EntityService {
         try {
             resultat = clientDao.listClients();
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service listerClients()", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service listClients()", ex);
+            resultat = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return resultat;
+    }
+    
+    public List<Medium> listMediums() {
+        List<Medium> resultat = null;
+        JpaUtil.creerContextePersistance();
+        try {
+            resultat = mediumDao.listMediums();
+        } catch (Exception ex) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service listMediums()", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();
@@ -62,7 +90,7 @@ public class EntityService {
         try {
             resultat = employeeDao.searchById(id);
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service searchClientById(id)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service searchEmployeeById(id)", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();
@@ -70,34 +98,19 @@ public class EntityService {
         return resultat;
     }
     
-    public List<Medium> listerMediums() {
-        List<Medium> resultat = null;
-        JpaUtil.creerContextePersistance();
-        try {
-            resultat = mediumDao.listerMediums();
-        } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service listerClients()", ex);
-            resultat = null;
-        } finally {
-            JpaUtil.fermerContextePersistance();
-        }
-        return resultat;
-    }
-    
-    //TODO Add search by id
     
     public void initializeMediums(Medium medium) {
         JpaUtil.creerContextePersistance();
         try {
             JpaUtil.ouvrirTransaction();
-            mediumDao.creer(medium);
+            mediumDao.create(medium);
             JpaUtil.validerTransaction();
-            System.out.println("initilisation du médium réussie");
+            System.out.println("Medium initilization successfull");
         } catch (Exception ex) {
             //Affichage de précis de l'erreur encourue
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service initialiserMedium(medium)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service initializeMediums(medium)", ex);
             JpaUtil.annulerTransaction();
-            System.out.println("initilisation du médium échouée");
+            System.out.println("Medium initilization failed");
         } finally {
             JpaUtil.fermerContextePersistance();
         }

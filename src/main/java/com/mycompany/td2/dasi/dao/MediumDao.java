@@ -16,16 +16,14 @@ import javax.persistence.TypedQuery;
  */
 public class MediumDao {
     
-    public void creer(Medium medium) {
-        JpaUtil.creerContextePersistance();
-        try {
-        JpaUtil.ouvrirTransaction();
+    public void create(Medium medium) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         em.persist(medium);
-        JpaUtil.validerTransaction();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+    }
+    
+    public Medium searchById(Long id) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        return em.find(Medium.class, id); //return null if doesn't exist
     }
     
     /*
@@ -35,12 +33,10 @@ public class MediumDao {
     }
     */
 
-    public List<Medium> listerMediums() {
+    public List<Medium> listMediums() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
         TypedQuery<Medium> query = em.createQuery("SELECT m FROM Medium m", Medium.class);
         return query.getResultList();
     }
 
-  
-    // modifier / supprimer  ... 
 }

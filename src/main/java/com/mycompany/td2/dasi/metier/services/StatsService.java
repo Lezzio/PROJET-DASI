@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author aguigal
  */
 public class StatsService {
@@ -40,16 +39,14 @@ public class StatsService {
         JpaUtil.creerContextePersistance();
         Map<String, Integer> map = new HashMap<String, Integer>();
         try {
-            List<Medium> listeMedium = mediumDao.listerMediums();
+            List<Medium> listeMedium = mediumDao.listMediums();
             for (Medium m : listeMedium) {
-           
                 List<Consultation> listeConsultation = consultationDao.findByMedium(m);
-                
                 map.put(m.getName(), listeConsultation.size());
             }
             return map;
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service NombreConsultationParMedium()", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service numberConsultationByMedium()", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
@@ -60,16 +57,18 @@ public class StatsService {
         JpaUtil.creerContextePersistance();
         List<Medium> listeMediumRetour = null;
         try {
-            
-            List<Medium> listeMedium = mediumDao.listerMediums();
+            List<Medium> listeMedium = mediumDao.listMediums();
             int nbMedium = listeMedium.size();
             int tabTop5[] = new int[nbMedium];
             Medium top5Medium[] = new Medium[nbMedium];
-            for(int i = 0; i < 5; i++){ tabTop5[i] = 0;}
-            for(int i = 0; i < 5; i++){ top5Medium[i] = listeMedium.get(0);}
+            for(int i = 0; i < 5; i++) { 
+                tabTop5[i] = 0;
+            }
+            for(int i = 0; i < 5; i++) { 
+                top5Medium[i] = listeMedium.get(0);
+            }
             int indice = 0;
             for (Medium m : listeMedium) {
-           
                 List<Consultation> listeConsultation = consultationDao.findByMedium(m);
                 
                 System.out.println("Nombre consultation : " + listeConsultation.size());
@@ -82,12 +81,9 @@ public class StatsService {
             int tempTop5;
             Medium temp5Medium;
             
-            for(int i=0; i < nbMedium; i++) 
-            {
-                    for(int j=1; j < (nbMedium-i); j++)
-                    {  
-                            if(tabTop5[j-1] > tabTop5[j])
-                            {
+            for(int i=0; i < nbMedium; i++) {
+                    for(int j=1; j < (nbMedium-i); j++) {  
+                            if(tabTop5[j-1] > tabTop5[j]) {
                                     //echanges des elements
                                     tempTop5 = tabTop5[j-1];  
                                     tabTop5[j-1] = tabTop5[j];  
@@ -96,16 +92,16 @@ public class StatsService {
                                     top5Medium[j-1] = top5Medium[j];  
                                     top5Medium[j] = temp5Medium; 
                             }
-
                     }
             }
+            
             listeMediumRetour = new ArrayList<Medium>();
-            for(int i = 0; i < 5; i++){
+            for(int i = 0; i < 5; i++) {
                 //System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
                 listeMediumRetour.add(top5Medium[i]);
             }
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service Top5Medium()", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service topFiveMedium()", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
@@ -113,7 +109,7 @@ public class StatsService {
         
     }
     
-    public Map<Long, Integer> clientDistributionByMedium() {
+    public Map<Long, Integer> clientDistributionByEmployee() {
         Map<Long, Integer> mappingEmployeeClient = null;
         JpaUtil.creerContextePersistance();
  
@@ -122,11 +118,11 @@ public class StatsService {
             List<Employee> listeEmployee = employeeDao.listEmployees();
 
             for (Employee e : listeEmployee) {
-                List<Client> listeClientConsulte = entityService.findClientsByEmployee(e);
+                List<Client> listeClientConsulte = clientDao.findClientsByEmployee(e);
                 mappingEmployeeClient.put(e.getId(), listeClientConsulte.size());
             }
-        }catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service repartitionClientParMedium()", e);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service clientDistributionByEmployee()", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }

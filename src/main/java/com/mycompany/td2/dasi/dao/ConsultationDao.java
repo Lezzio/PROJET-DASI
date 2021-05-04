@@ -88,7 +88,6 @@ public class ConsultationDao {
         if (!activeConsultations.isEmpty()) {
             result = activeConsultations.get(0); // premier de la liste
         }
-        System.out.println("SEARCH ACTIVE = " + result);
         return result;
     }
     

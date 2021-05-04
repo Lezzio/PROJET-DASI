@@ -19,7 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author aguigal
  */
 public class AuthentificationService {
@@ -50,7 +49,7 @@ public class AuthentificationService {
                     "Bonjour " + client.getFirstName() + " nous vous confirmons votre inscription au service PREDICT’IF. Rendez-vous vite sur notre site pour consulter votre profil astrologique et profiter des dons " +
 "incroyables de nos mediums");
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service inscrireClient(client)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service signupClient(Client client)", ex);
             JpaUtil.annulerTransaction();
             resultat = null;
             //Notifier l'échec
@@ -77,7 +76,7 @@ public class AuthentificationService {
                 }
             }
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service authentifierClient(mail,motDePasse)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service authentificateClient(String mail, String password", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();
@@ -122,7 +121,7 @@ public class AuthentificationService {
                 }
             }
         } catch (Exception ex) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service authentifierEmployee(mail,motDePasse)", ex);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service authentifierEmployee(String mail, String password)", ex);
             resultat = null;
         } finally {
             JpaUtil.fermerContextePersistance();

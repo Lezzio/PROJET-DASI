@@ -13,7 +13,9 @@ import com.mycompany.td2.dasi.metier.modele.Client;
 import com.mycompany.td2.dasi.metier.modele.Consultation;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
+import com.mycompany.td2.dasi.utils.AstroNetApi;
 import com.mycompany.td2.dasi.utils.Message;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,6 +29,7 @@ public class AppointmentService {
     private final ClientDao clientDao = new ClientDao();
     private final EmployeeDao employeeDao = new EmployeeDao();
     private final ConsultationDao consultationDao = new ConsultationDao();
+    private final AstroNetApi astroNet = new AstroNetApi();
     
     public Long askConsultation(Client client, Medium medium) {
         Long result = null;
@@ -46,10 +49,8 @@ public class AppointmentService {
                 consultationDao.create(consultation);
                 result = consultation.getId();
                 
-                
                 employee.setAvailable(false);
                 employeeDao.updateEmployee(employee);
-                
                 
                 JpaUtil.validerTransaction();
                 
@@ -110,7 +111,7 @@ public class AppointmentService {
             
             JpaUtil.validerTransaction();
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getEmployeeActiveConsultation(Employee employee)", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service acceptConsultation(Employee employee, Consultation consultation)", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
@@ -144,10 +145,20 @@ public class AppointmentService {
             consultationDao.updateConsultation(consultation);
             JpaUtil.validerTransaction();
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service denyConsultation(Employee employee, Consultation consultation", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service endConsultation(Employee employee, Consultation consultation", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
+    }
+    
+    public List<String> getPredictionForClient(Client client, int love, int health, int work){
+        List<String> listPredictions = null;
+        try {
+            listPredictions = astroNet.getPredictions(client.getAstralProfile().getColor(), client.getAstralProfile().getTotemAnimal(), love, health, work);
+        } catch (IOException e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au getPredictionForClient(Client client, int love, int health, int work)", e);
+        }
+        return listPredictions;
     }
     
 }
