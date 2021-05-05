@@ -81,27 +81,32 @@ public class StatsService {
             int tempTop5;
             Medium temp5Medium;
             
-            for(int i=0; i < nbMedium; i++) {
-                    for(int j=1; j < (nbMedium-i); j++) {  
-                            if(tabTop5[j-1] > tabTop5[j]) {
+            for(int i=0; i < nbMedium; i++) 
+            {
+                    for(int j=0; j < (nbMedium-i-1); j++)
+                    {  
+                            if(tabTop5[j] < tabTop5[j+1])
+                            {
                                     //echanges des elements
-                                    tempTop5 = tabTop5[j-1];  
-                                    tabTop5[j-1] = tabTop5[j];  
-                                    tabTop5[j] = tempTop5;
-                                    temp5Medium = top5Medium[j-1];  
-                                    top5Medium[j-1] = top5Medium[j];  
-                                    top5Medium[j] = temp5Medium; 
+                                    tempTop5 = tabTop5[j];  
+                                    tabTop5[j] = tabTop5[j+1];  
+                                    tabTop5[j+1] = tempTop5;
+                                    temp5Medium = top5Medium[j];  
+                                    top5Medium[j] = top5Medium[j+1];  
+                                    top5Medium[j+1] = temp5Medium; 
                             }
+
                     }
             }
-            
             listeMediumRetour = new ArrayList<Medium>();
-            for(int i = 0; i < 5; i++) {
-                //System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
-                listeMediumRetour.add(top5Medium[i]);
+            for(int i = 0; i < 5; i++){
+                System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
+                if(tabTop5[i] != 0){
+                    listeMediumRetour.add(top5Medium[i]);
+                }
             }
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service topFiveMedium()", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service Top5Medium()", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
