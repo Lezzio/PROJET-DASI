@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.Entity;
  * @author maxime
  */
 @Entity
-public class Astrolog extends Medium {
+public class Astrolog extends Medium implements Serializable {
 
     public Astrolog() {
     }

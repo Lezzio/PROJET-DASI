@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -20,7 +21,7 @@ import javax.persistence.TemporalType;
  * @author aguigal
  */
 @Entity
-public class Client {
+public class Client implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

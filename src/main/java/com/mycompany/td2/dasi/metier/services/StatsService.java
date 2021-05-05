@@ -87,7 +87,7 @@ public class StatsService {
                     {  
                             if(tabTop5[j] < tabTop5[j+1])
                             {
-                                    //echanges des elements
+                                    //Swap elements
                                     tempTop5 = tabTop5[j];  
                                     tabTop5[j] = tabTop5[j+1];  
                                     tabTop5[j+1] = tempTop5;

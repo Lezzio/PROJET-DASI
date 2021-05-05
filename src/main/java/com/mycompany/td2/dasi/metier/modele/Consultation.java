@@ -5,20 +5,25 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author aguigal
  */
 @Entity
-public class Consultation {
+public class Consultation implements Serializable {
 
+    @Temporal(TemporalType.DATE)
     private Date startDate;
+    @Temporal(TemporalType.DATE)
     private Date endDate;
     private String commentary;
     private Medium medium;

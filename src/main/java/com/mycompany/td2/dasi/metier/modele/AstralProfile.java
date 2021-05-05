@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.Embeddable;
  * @author aguigal
  */
 @Embeddable
-public class AstralProfile {
+public class AstralProfile implements Serializable {
     
     private String zodiacSign;
     private String chineeseSign;

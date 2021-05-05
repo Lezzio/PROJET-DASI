@@ -35,7 +35,6 @@ public class EmployeeAccountTest extends Test {
         Employee employee2 = new Employee("male", "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
         boolean secondAccountPassed = employeeAccountTests(employee2);
         if(!secondAccountPassed) return false;
-        
        
         return true;
     }
@@ -47,9 +46,6 @@ public class EmployeeAccountTest extends Test {
         
         //Search client by id
         Employee fetchedEmployee = entityService.searchEmployeeById(employee.getId());
-        
-        System.out.println(fetchedEmployee);
-        System.out.println(fetchedEmployee.isSimilar(employee));
         
         if(fetchedEmployee == null || !fetchedEmployee.isSimilar(employee)) {
             System.out.println("Failed fetched employee not null and similar");
