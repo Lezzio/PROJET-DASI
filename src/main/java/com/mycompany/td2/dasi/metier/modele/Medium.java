@@ -30,8 +30,6 @@ public class Medium implements Serializable {
     protected String presentation;
     protected String name;
     protected String gender;
-    @OneToMany(mappedBy = "medium")
-    private List<Consultation> consultations;
 
     public Medium() {
     }

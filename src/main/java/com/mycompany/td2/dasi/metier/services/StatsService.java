@@ -16,10 +16,12 @@ import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * @author aguigal
@@ -115,33 +117,30 @@ public class StatsService {
     }
     
     public Map<Long, Integer> clientDistributionByEmployee() {
-        JpaUtil.creerContextePersistance();
         Map<Long, Integer> mappingEmployeeClient = null;
-        var ok = employeeDao.getEmployeeClientCountMap();
-        System.out.println("YAY");
-        System.out.println(ok);
-        
-        if(mappingEmployeeClient != null) {
-            mappingEmployeeClient.forEach((id, value) -> System.out.println(id + " et " + value));
-        }
-        
-        /*
+        JpaUtil.creerContextePersistance();
  
         try {
             mappingEmployeeClient = new HashMap<>();
             List<Employee> listeEmployee = employeeDao.listEmployees();
 
             for (Employee e : listeEmployee) {
-                List<Client> listeClientConsulte = clientDao.findClientsByEmployee(e);
+                List<Client> listeClientConsulte = entityService.findClientsByEmployee(e);
                 mappingEmployeeClient.put(e.getId(), listeClientConsulte.size());
             }
+            
+            mappingEmployeeClient = mappingEmployeeClient.entrySet()
+                .stream()
+                .sorted((Map.Entry.<Long, Integer>comparingByValue().reversed()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+            
         } catch (Exception e) {
-            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service clientDistributionByEmployee()", e);
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service repartitionClientParMedium()", e);
         } finally {
             JpaUtil.fermerContextePersistance();
         }
-        */
         return mappingEmployeeClient;
     }
+    
     
 }

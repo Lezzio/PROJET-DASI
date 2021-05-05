@@ -36,9 +36,8 @@ public class Consultation implements Serializable {
     private Client client;
     @ManyToOne
     private Employee employee;
-     public Consultation(){
-         
-     }
+    
+     public Consultation() {}
     
     public Consultation(Client client, Medium medium, Employee employee) {
         this.client = client;

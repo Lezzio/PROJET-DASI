@@ -126,8 +126,8 @@ public class ConsultationTest extends Test {
         * This kind of direct access is not used in production so we directly use the DAO
         */
         try {
+        JpaUtil.creerContextePersistance(); //create context here for uncommon DAO usage for tests
         Employee employee = employeeDao.searchByMail("martin.delevoie@gmail.com");
-        JpaUtil.creerContextePersistance();
         
         Consultation martinConsultation = appointmentService.getEmployeeActiveConsultation(employee);
         

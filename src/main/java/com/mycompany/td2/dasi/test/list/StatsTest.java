@@ -98,11 +98,9 @@ public class StatsTest extends Test {
             return false;
         }
         
-        /*
         Map<Long, Integer> employeesDistribution = statsService.clientDistributionByEmployee();
         System.out.println("Employee = " + employeesDistribution);
         employeesDistribution.forEach((id, value) -> System.out.println(id + " et " + value));
-        */
         
         
 

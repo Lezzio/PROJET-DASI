@@ -16,6 +16,8 @@ import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -98,6 +100,13 @@ public class EntityService {
         return resultat;
     }
     
+    public List<Client> findClientsByEmployee(Employee employee) {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Client> query = em.createQuery("SELECT DISTINCT(c.client) FROM Consultation c WHERE c.employee.id = :employee", Client.class);
+        query.setParameter("employee", employee.getId()); // correspond au paramètre ":mail" dans la requête
+        List<Client> clientConsultatesParEmployee = query.getResultList();
+        return clientConsultatesParEmployee;
+    }
     
     public void initializeMediums(Medium medium) {
         JpaUtil.creerContextePersistance();
