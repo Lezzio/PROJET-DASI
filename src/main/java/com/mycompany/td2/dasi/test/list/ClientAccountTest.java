@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author aguigal
  */
 public class ClientAccountTest extends Test {

@@ -24,28 +24,17 @@ public class Main {
         JpaUtil.init();
         
         admin.initializeMedium();
+        
+        /**
+         * Launches the test scenarios in the following order :
+         * 1) ClientAccountTest, makes sure clients can sign up and sign in correctly and they can be accessed and so on
+         * 2) EmployeeAccountTest, makes sure employees can be created and sign in correctly and they can be accessed and so on
+         * 3) ConsultationTest, makes sure a client can ask a consultation with the right criterion 
+         * 4) StatsTest, make sure our statistical service works well
+         */
         TestManager.testApplications();
         
-                /*
-
-        afficherListeMediums();
-        
-        List<String> listeMessage = admin.lesMessagesInspiration(1, 3, 4);
-        for(String m : listeMessage){
-            System.out.println(m);
-        }
-        //testerInscriptionClient();
-        
-        */
         JpaUtil.destroy();
     }
-         /*public static void testerInscriptionClient() {
-        Client client1 = new Client("Dupond", "Jean", "jd@gmail.com", "mdp2", Date.valueOf("2020-05-05"));
-        clientService.inscrireClient(client1);
-        Client client2 = clientService.rechercherClientParId(client1.getId());
-        System.out.println(client2.toString());
-        Employee employee = new Employee("Autre", "yasmine", "souabi", "yasmine.souabi", "jesuisunemerde");
-        employeeService.authentifierEmployee("yasmine.souabi@insa-lyon.fr", "jesuisunemerde");
-    }*/
     
 }

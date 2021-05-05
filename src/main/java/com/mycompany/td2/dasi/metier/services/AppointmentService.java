@@ -78,7 +78,7 @@ public class AppointmentService {
     /**
      * Returns active or pending consultation
      * @param employee
-     * @return 
+     * @return
      */
     public Consultation getEmployeeActiveConsultation(Employee employee) {
         Consultation result = null;
@@ -151,7 +151,7 @@ public class AppointmentService {
         }
     }
     
-    public List<String> getPredictionForClient(Client client, int love, int health, int work){
+    public List<String> getPredictionsForClient(Client client, int love, int health, int work){
         List<String> listPredictions = null;
         try {
             listPredictions = astroNet.getPredictions(client.getAstralProfile().getColor(), client.getAstralProfile().getTotemAnimal(), love, health, work);

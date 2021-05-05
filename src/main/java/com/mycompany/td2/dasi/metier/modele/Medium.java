@@ -6,12 +6,14 @@
 package com.mycompany.td2.dasi.metier.modele;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,9 +26,12 @@ public class Medium implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
+    
     protected String presentation;
     protected String name;
     protected String gender;
+    @OneToMany(mappedBy = "medium")
+    private List<Consultation> consultations;
 
     public Medium() {
     }

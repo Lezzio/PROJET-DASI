@@ -11,7 +11,6 @@ import com.mycompany.td2.dasi.metier.services.EntityService;
 import com.mycompany.td2.dasi.test.Test;
 
 /**
- *
  * @author aguigal
  */
 public class EmployeeAccountTest extends Test {
@@ -44,7 +43,7 @@ public class EmployeeAccountTest extends Test {
         //Sign up
         authentificationService.signupEmployee(employee);
         
-        //Search client by id
+        //Search employee by id
         Employee fetchedEmployee = entityService.searchEmployeeById(employee.getId());
         
         if(fetchedEmployee == null || !fetchedEmployee.isSimilar(employee)) {

@@ -12,12 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- *
  * @author aguigal
  */
 @Entity
 public class Employee implements Serializable {
-    
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -25,7 +23,6 @@ public class Employee implements Serializable {
     
     private String gender;
     private String firstName;
-
     private String lastName;
     private String mail;
     private String password;
@@ -33,8 +30,7 @@ public class Employee implements Serializable {
     private boolean available;
     private int appointmentCount;
     
-    public Employee() {
-    }
+    public Employee() {}
     
     public Employee(String gender, String firstName, String lastName, String mail, String password, String phone) {
         this.gender = gender;

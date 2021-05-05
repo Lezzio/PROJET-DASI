@@ -36,13 +36,15 @@ public class TestManager {
         int passedCount = testsCount - failedTests.size();
         System.out.println("Tests : " + passedCount + "/" + testsCount + " passed");
         failedTests.forEach(test -> System.out.println("Failed : " + test.getName()));
-        
     }
 
     public static void addTest(Test test) {
         tests.add(test);
     }
     
+    /**
+     * Instantiate test objects, they'll be added in the tests list in their constructors
+     */
     public static void initTests() {
         ClientAccountTest clientAccountTest = new ClientAccountTest();
         EmployeeAccountTest employeeAccountTest = new EmployeeAccountTest();

@@ -115,8 +115,17 @@ public class StatsService {
     }
     
     public Map<Long, Integer> clientDistributionByEmployee() {
-        Map<Long, Integer> mappingEmployeeClient = null;
         JpaUtil.creerContextePersistance();
+        Map<Long, Integer> mappingEmployeeClient = null;
+        var ok = employeeDao.getEmployeeClientCountMap();
+        System.out.println("YAY");
+        System.out.println(ok);
+        
+        if(mappingEmployeeClient != null) {
+            mappingEmployeeClient.forEach((id, value) -> System.out.println(id + " et " + value));
+        }
+        
+        /*
  
         try {
             mappingEmployeeClient = new HashMap<>();
@@ -131,6 +140,7 @@ public class StatsService {
         } finally {
             JpaUtil.fermerContextePersistance();
         }
+        */
         return mappingEmployeeClient;
     }
     

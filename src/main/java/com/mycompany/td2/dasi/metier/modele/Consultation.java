@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,18 +22,20 @@ import javax.persistence.TemporalType;
 @Entity
 public class Consultation implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     @Temporal(TemporalType.DATE)
     private Date startDate;
     @Temporal(TemporalType.DATE)
     private Date endDate;
     private String commentary;
+    @ManyToOne
     private Medium medium;
+    @ManyToOne
     private Client client;
+    @ManyToOne
     private Employee employee;
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-
      public Consultation(){
          
      }

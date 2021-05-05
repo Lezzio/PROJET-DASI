@@ -7,12 +7,14 @@ package com.mycompany.td2.dasi.metier.modele;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +28,7 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    
     private String firstName;
     private String lastName;
     private String civility;
@@ -37,6 +40,8 @@ public class Client implements Serializable {
     private Date birthDate;
     @Embedded
     private AstralProfile astralProfile;
+    @OneToMany(mappedBy = "client")
+    private List<Consultation> consultations;
     
     
     

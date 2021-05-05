@@ -8,7 +8,9 @@ package com.mycompany.td2.dasi.dao;
 import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.modele.Medium;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
+import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 
 /**
@@ -55,6 +57,35 @@ public class EmployeeDao {
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.available = true AND e.gender = :gender ORDER BY e.appointmentCount ASC", Employee.class);
         query.setParameter("gender", medium.getGender());
         return query.getResultList();
+    }
+    
+    public Map<String, Integer> getEmployeeClientCountMap() {
+        EntityManager em = JpaUtil.obtenirContextePersistance();
+        TypedQuery<Tuple> query = em.createQuery("""
+                                                    SELECT
+                                                        e.lastName as lastName,
+                                                    COUNT(DISTINCT(c.client)) as uniqueClientsCount
+                                                    FROM
+                                                        Consultation c INNER JOIN c.employee e
+                                                    GROUP BY
+                                                        e
+                                                    """, Tuple.class);
+        var resultList = query.getResultList();
+        System.out.println("Query = " + query);
+        System.out.println(resultList.size());
+        System.out.println("Index 0 = " + resultList.get(0));
+        System.out.println("Index 1 = " + resultList.get(1));
+        System.out.println("Index 1 = " + resultList.get(1).get("lastName"));
+        System.out.println("Index 1 = " + resultList.get(1).get("uniqueClientsCount"));
+                
+                /*collect(
+            Collectors.toMap(
+                tuple -> ((String) tuple.get("lastName")),
+                tuple -> ((Number) tuple.get("uniqueClientsCount")).intValue()           
+            )
+        );
+        */
+        return null;
     }
     
     // modifier / supprimer  ... 

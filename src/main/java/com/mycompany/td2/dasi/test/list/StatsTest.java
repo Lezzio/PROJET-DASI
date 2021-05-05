@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author aguigal
  */
 public class StatsTest extends Test {
@@ -44,10 +43,11 @@ public class StatsTest extends Test {
         //topFiveMedium
         //clientDistributionByEmployee
         
+        
         statsService.numberConsultationByMedium();
-        Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "04");
+        Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835");
         Medium medium = new Medium("Medium test", "Test", "not specified");
-        Employee employee = new Employee();
+        Employee employee = new Employee("male", "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
         Date startDate = new Date();
         Date endDate = new Date();
         Consultation consultation1 = new Consultation(startDate, endDate, "Très bonne séance", client, medium, employee);
@@ -65,7 +65,6 @@ public class StatsTest extends Test {
         JpaUtil.ouvrirTransaction();
         mediumDao.create(medium);
         consultationDao.create(consultation1);
-        consultationDao.create(consultation2);
         JpaUtil.validerTransaction();
         } catch(Exception e) {
             e.printStackTrace();
@@ -75,7 +74,7 @@ public class StatsTest extends Test {
         System.out.println("Stats = " + stats);
         
         int testConsultationsCount = stats.get("Test");
-        if(testConsultationsCount != 2) {
+        if(testConsultationsCount != 1) {
             System.out.println("Failed test medium consultation count for Test");
             return false;
         }
@@ -89,20 +88,24 @@ public class StatsTest extends Test {
         List<Medium> mediumRanking = statsService.topFiveMedium();
         mediumRanking.forEach(m -> System.out.println(m.getName()));
         
-        //Only 2 mediums have consultations, first ranked must be Test with 2 consultations and Prof Tran second with one consultation from ConsultationTest
-        if(!mediumRanking.get(0).getName().equals("Test")) {
-            System.out.println("Failed test medium ranking 1st place for Test medium");
+        //Only 2 mediums have consultations, first ranked must be Prof Tran with 2 consultations and Test second with one consultation from ConsultationTest
+        if(!mediumRanking.get(0).getName().equals("Prof Tran")) {
+            System.out.println("Failed test medium ranking 1st place for Prof Tran medium");
             return false;
         }
-        if(!mediumRanking.get(1).getName().equals("Prof Tran")) {
-            System.out.println("Failed test medium ranking 2nd place for Prof Tran medium");
+        if(!mediumRanking.get(1).getName().equals("Test")) {
+            System.out.println("Failed test medium ranking 2nd place for Test medium");
             return false;
         }
         
+        /*
         Map<Long, Integer> employeesDistribution = statsService.clientDistributionByEmployee();
         System.out.println("Employee = " + employeesDistribution);
         employeesDistribution.forEach((id, value) -> System.out.println(id + " et " + value));
+        */
         
+        
+
         return true;
     }
     
