@@ -43,7 +43,6 @@ public class StatsTest extends Test {
         //topFiveMedium
         //clientDistributionByEmployee
         
-        
         statsService.numberConsultationByMedium();
         Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835");
         Medium medium = new Medium("Medium test", "Test", "not specified");
@@ -68,6 +67,7 @@ public class StatsTest extends Test {
         JpaUtil.validerTransaction();
         } catch(Exception e) {
             e.printStackTrace();
+            return false;
         }
         
         Map<String, Integer> stats = statsService.numberConsultationByMedium();
@@ -102,8 +102,14 @@ public class StatsTest extends Test {
         System.out.println("Employee = " + employeesDistribution);
         employeesDistribution.forEach((id, value) -> System.out.println(id + " et " + value));
         
+        Integer count = employeesDistribution.get(employee.getId());
         
-
+        //Make sure the employee had one unique unique client
+        if(count != 1) {
+            System.out.println("Failed test employee distribution");
+            return false;
+        }
+        
         return true;
     }
     

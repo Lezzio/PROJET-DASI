@@ -41,7 +41,7 @@ public class ConsultationTest extends Test {
         //Sign up more employees for the tests
         Client client1 = new Client("Maxime", "Tarantino", "M.", "maxime.tarantino@gmail.com", "tatata", new Date(), "0670235025");
         authentificationService.signupClient(client1);
-        Employee employee1 = new Employee("female", "Lucille", "Fantini", "lcille.fantini@gmail.com", "tastyoctodon1", "0782577583");
+        Employee employee1 = new Employee("female", "Lucille", "Fantini", "lucille.fantini@gmail.com", "tastyoctodon1", "0782577583");
         authentificationService.signupEmployee(employee1);
         Employee employee2 = new Employee("male", "Thibaud", "Collard", "thibaud.collard@gmail.com", "coco09", "0464652212");
         authentificationService.signupEmployee(employee2);
@@ -121,7 +121,7 @@ public class ConsultationTest extends Test {
         }
         
         /*
-        * This second time it has to be Martin Dellevoie from EmployeeAccountTest prioritizing the ones with least appointment count
+        * This second time it has to be Martin Dellevoie signed up in EmployeeAccountTest prioritizing the ones with least appointment count
         * and employee2 Thibaud Collard already has 1 appointment done
         * This kind of direct access is not used in production so we directly use the DAO
         */
@@ -138,6 +138,7 @@ public class ConsultationTest extends Test {
         
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
         
         return true;

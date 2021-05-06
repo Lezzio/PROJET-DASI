@@ -28,7 +28,7 @@ public class ClientAccountTest extends Test {
     @Override
     public boolean test() {
         
-        //Sign up
+        //Tests sequence with first client
         Client client1 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.es", "tornado123", new Date(), "0680255025");
         boolean firstAccountPassed = clientAccountTests(client1);
         if(!firstAccountPassed) return false;
@@ -41,6 +41,7 @@ public class ClientAccountTest extends Test {
             return false;
         }
         
+        //Tests sequence with second client
         Client client2 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.fr", "tornado123", new Date(), "0680255025");
         boolean secondAccountPassed = clientAccountTests(client2);
         if(!secondAccountPassed) return false;
@@ -64,6 +65,7 @@ public class ClientAccountTest extends Test {
         //Search client by id
         Client fetchedClient = entityService.searchClientById(client.getId());
         
+        //Fetched client must be the same as the initial one (valid verification despite the possible local cache as it goes through the entity manager)
         if(fetchedClient == null || !fetchedClient.isSimilar(client)) {
             System.out.println("Failed fetched client not null and similar");
             return false;
@@ -72,6 +74,7 @@ public class ClientAccountTest extends Test {
         //Sign in
         Client authentificatedClient = authentificationService.authentificateClient(client.getMail(), client.getPassword());
         
+        //Signed in client must be similar to the one expected
         if(authentificatedClient == null || !authentificatedClient.isSimilar(client)) {
             System.out.println("Failed client authentification not null and similar");
             return false;

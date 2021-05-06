@@ -26,11 +26,12 @@ public class EmployeeAccountTest extends Test {
     @Override
     public boolean test() {
         
-        //Sign up
-        Employee employee1 = new Employee("female", "Claire", "Penot", "claire.penot@insa-lyon.fr", "tastyoctodon", "0782977582");
+        //Tests sequence for first employee
+        Employee employee1 = new Employee("female", "Claire", "Penaud", "claire.penaud@insa-lyon.fr", "tastyoctodon", "0782977582");
         boolean firstAccountPassed = employeeAccountTests(employee1);
         if(!firstAccountPassed) return false;
         
+        //Tests sequence for second employee
         Employee employee2 = new Employee("male", "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
         boolean secondAccountPassed = employeeAccountTests(employee2);
         if(!secondAccountPassed) return false;
@@ -46,6 +47,7 @@ public class EmployeeAccountTest extends Test {
         //Search employee by id
         Employee fetchedEmployee = entityService.searchEmployeeById(employee.getId());
         
+        //Same as the client test, fetched employee must exist and be similar
         if(fetchedEmployee == null || !fetchedEmployee.isSimilar(employee)) {
             System.out.println("Failed fetched employee not null and similar");
             return false;
@@ -54,6 +56,7 @@ public class EmployeeAccountTest extends Test {
         //Sign in
         Employee authentificatedClient = authentificationService.authentificateEmployee(employee.getMail(), employee.getPassword());
         
+        //Signed in employee must exist and be similar to the one expected
         if(authentificatedClient == null || !authentificatedClient.isSimilar(employee)) {
             System.out.println("Failed employee authentification not null and similar");
             return false;

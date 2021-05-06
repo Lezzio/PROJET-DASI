@@ -23,7 +23,7 @@ public class Main {
         System.out.println("TD2 - DASI init");
         JpaUtil.init();
         
-        admin.initializeMedium();
+        admin.initializeMediums();
         
         /**
          * Launches the test scenarios in the following order :

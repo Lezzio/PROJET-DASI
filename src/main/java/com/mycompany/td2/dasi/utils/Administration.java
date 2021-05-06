@@ -20,7 +20,7 @@ public class Administration {
     
     public static EntityService entityService = new EntityService();
     
-    public void initializeMedium() {
+    public void initializeMediums() {
 
         Spirite spirite1 = new Spirite("Spécialiste des grandes conversations au-delà de TOUTES les frontières.",
         "Gwenaëlle", "F", "Boule de cristal");
