@@ -109,6 +109,22 @@ public class ConsultationTest extends Test {
             return false;
         }
         
+        //Check if the client history works
+        List<Consultation> previousConsultations = appointmentService.fetchClientHistory(client1);
+        
+        //Only one consultation in the history
+        if(previousConsultations.size() != 1) {
+            System.out.println("Failed test : client history size");
+            return false;
+        }
+        
+        Consultation lastConsultation = previousConsultations.get(0);
+        //Last consultation
+        if(!consultation.getId().equals(lastConsultation.getId())) {
+            System.out.println("Failed test : consultation done and latest in the history must be the same");
+            return false;
+        }
+        
         //==================================================================================================================
         
         //Ask a second consultation for the test medium Prof Tran

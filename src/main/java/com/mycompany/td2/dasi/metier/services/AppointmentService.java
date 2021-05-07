@@ -117,7 +117,7 @@ public class AppointmentService {
         }
     }
     
-    /*
+    /* Actually not needed
     public void denyConsultation(Employee employee, Consultation consultation) {
         JpaUtil.creerContextePersistance();
         try {
@@ -159,6 +159,11 @@ public class AppointmentService {
             Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au getPredictionForClient(Client client, int love, int health, int work)", e);
         }
         return listPredictions;
+    }
+    
+    public List<Consultation> fetchClientHistory(Client client) {
+        JpaUtil.creerContextePersistance();
+        return consultationDao.findHistoryClient(client);
     }
     
 }

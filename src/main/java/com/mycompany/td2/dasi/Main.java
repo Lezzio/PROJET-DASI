@@ -20,7 +20,7 @@ public class Main {
     public static Administration admin = new Administration();
     
     public static void main(String[] args) throws RemoteException {
-        System.out.println("TD2 - DASI init");
+        System.out.println("DASI init");
         JpaUtil.init();
         
         admin.initializeMediums();

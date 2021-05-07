@@ -72,13 +72,9 @@ public class StatsService {
             int indice = 0;
             for (Medium m : listeMedium) {
                 List<Consultation> listeConsultation = consultationDao.findByMedium(m);
-                
-                System.out.println("Nombre consultation : " + listeConsultation.size());
-                
                 tabTop5[indice] = listeConsultation.size();
                 top5Medium[indice] = m;
                 indice++;
-            
             }
             int tempTop5;
             Medium temp5Medium;
@@ -125,7 +121,7 @@ public class StatsService {
             List<Employee> listeEmployee = employeeDao.listEmployees();
 
             for (Employee e : listeEmployee) {
-                List<Client> listeClientConsulte = entityService.findClientsByEmployee(e);
+                List<Client> listeClientConsulte = clientDao.findClientsByEmployee(e);
                 mappingEmployeeClient.put(e.getId(), listeClientConsulte.size());
             }
             

@@ -34,12 +34,12 @@ public class Administration {
         Astrolog astrolog2 = new Astrolog("Basée à Champigny-sur-Marne, Serena vous révèlera votre avenir pour éclairer votre passé.", "Serena", "F", "École Normale Supérieure d’Astrologie (ENS-Astro)", "2006");
 
 
-        entityService.initializeMediums(spirite1);
-        entityService.initializeMediums(spirite2);
-        entityService.initializeMediums(cartomancian1);
-        entityService.initializeMediums(cartomancian2);
-        entityService.initializeMediums(astrolog1);
-        entityService.initializeMediums(astrolog2);
+        entityService.initializeMedium(spirite1);
+        entityService.initializeMedium(spirite2);
+        entityService.initializeMedium(cartomancian1);
+        entityService.initializeMedium(cartomancian2);
+        entityService.initializeMedium(astrolog1);
+        entityService.initializeMedium(astrolog2);
     }
     
     public List<String> lesMessagesInspiration(int choixAmour, int choixSante, int choixTravail){

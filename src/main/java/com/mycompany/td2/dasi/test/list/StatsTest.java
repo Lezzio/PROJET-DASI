@@ -74,12 +74,14 @@ public class StatsTest extends Test {
         System.out.println("Stats = " + stats);
         
         int testConsultationsCount = stats.get("Test");
+        //
         if(testConsultationsCount != 1) {
             System.out.println("Failed test medium consultation count for Test");
             return false;
         }
         
         int endoraConsultationsCount = stats.get("Endora");
+        //
         if(endoraConsultationsCount != 0) {
             System.out.println("Failed test medium consultation count for Endora");
             return false;
@@ -99,8 +101,6 @@ public class StatsTest extends Test {
         }
         
         Map<Long, Integer> employeesDistribution = statsService.clientDistributionByEmployee();
-        System.out.println("Employee = " + employeesDistribution);
-        employeesDistribution.forEach((id, value) -> System.out.println(id + " et " + value));
         
         Integer count = employeesDistribution.get(employee.getId());
         

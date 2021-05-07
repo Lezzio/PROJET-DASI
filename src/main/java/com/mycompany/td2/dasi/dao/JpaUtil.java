@@ -45,7 +45,7 @@ public class JpaUtil {
     };
 
     private static void log(String message) {
-        //Logger.getAnonymousLogger().log(Level.INFO, "[JpaUtil:Log] " + message);
+        Logger.getAnonymousLogger().log(Level.INFO, "[JpaUtil:Log] " + message);
     }
 
     /**

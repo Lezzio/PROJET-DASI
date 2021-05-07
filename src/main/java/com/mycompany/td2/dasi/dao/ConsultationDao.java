@@ -62,16 +62,12 @@ public class ConsultationDao {
         return clientParMediumConsultations;
     }
     
-    public Consultation findHistoryClient(Client client) {
+    public List<Consultation> findHistoryClient(Client client) {
         EntityManager em = JpaUtil.obtenirContextePersistance();
-        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.client = :client AND c.endDate IS NOT NULL ORDER BY c.endDate ASC", Consultation.class);
-        query.setParameter("client", client.getId()); // correspond au paramètre ":mail" dans la requête
+        TypedQuery<Consultation> query = em.createQuery("SELECT c FROM Consultation c WHERE c.client = :client AND c.endDate IS NOT NULL ORDER BY c.endDate DESC", Consultation.class);
+        query.setParameter("client", client); // correspond au paramètre ":mail" dans la requête
         List<Consultation> clientConsultations = query.getResultList();
-        Consultation result = null;
-        if (!clientConsultations.isEmpty()) {
-            result = clientConsultations.get(0); // premier de la liste
-        }
-        return result;
+        return clientConsultations;
     }
     
     /**
