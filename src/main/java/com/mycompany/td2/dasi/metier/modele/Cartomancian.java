@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.Serializable;
 import javax.persistence.Entity;
 
@@ -18,7 +19,7 @@ public class Cartomancian extends Medium implements Serializable {
     public Cartomancian() {
     }
 
-    public Cartomancian(String presentation, String name, String gender) {
+    public Cartomancian(String presentation, String name, Gender gender) {
         super(presentation, name, gender);
     }
 }

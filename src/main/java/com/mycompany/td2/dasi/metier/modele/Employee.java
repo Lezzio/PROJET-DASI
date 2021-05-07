@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    private String gender;
+    private Gender gender;
     private String firstName;
     private String lastName;
     private String mail;
@@ -32,7 +33,7 @@ public class Employee implements Serializable {
     
     public Employee() {}
     
-    public Employee(String gender, String firstName, String lastName, String mail, String password, String phone) {
+    public Employee(Gender gender, String firstName, String lastName, String mail, String password, String phone) {
         this.gender = gender;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,7 +50,7 @@ public class Employee implements Serializable {
         this.available = available;
     }
     
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -65,7 +66,7 @@ public class Employee implements Serializable {
         return mail;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

@@ -8,20 +8,23 @@ package com.mycompany.td2.dasi;
 import com.mycompany.td2.dasi.dao.JpaUtil;
 import com.mycompany.td2.dasi.test.TestManager;
 import com.mycompany.td2.dasi.utils.Administration;
-import java.rmi.RemoteException;
-
 
 /**
- * @author aguigal
+ * Project by Allan Guigal, Aurélien Tournade, Julien Bouvier and Maxime Boyer (3411 x 3409)
+ * Git versioning available on GitHub :
+ * https://github.com/Lezzio/PROJET-DASI
+ * 
+ * Have a good read!
  */
 public class Main {
     
-    //public static EmployeeService employeeService = new EmployeeService();
     public static Administration admin = new Administration();
-    
-    public static void main(String[] args) throws RemoteException {
-        System.out.println("DASI init");
+
+    public static void main(String[] args) {
+        System.out.println("DASI backend service init");
+        //Init the JPA on start
         JpaUtil.init();
+        
         
         admin.initializeMediums();
         
@@ -34,6 +37,7 @@ public class Main {
          */
         TestManager.testApplications();
         
+        //Destroy the JPA on exit
         JpaUtil.destroy();
     }
     

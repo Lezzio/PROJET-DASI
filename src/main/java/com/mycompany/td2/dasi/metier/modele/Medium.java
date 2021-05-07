@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,12 +27,12 @@ public class Medium implements Serializable {
     
     protected String presentation;
     protected String name;
-    protected String gender;
+    protected Gender gender;
 
     public Medium() {
     }
 
-    public Medium(String presentation, String name, String gender) {
+    public Medium(String presentation, String name, Gender gender) {
         this.presentation = presentation;
         this.name = name;
         this.gender = gender;
@@ -49,7 +50,7 @@ public class Medium implements Serializable {
         return name;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -61,7 +62,7 @@ public class Medium implements Serializable {
         this.name = name;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

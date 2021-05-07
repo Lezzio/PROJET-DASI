@@ -5,6 +5,7 @@
  */
 package com.mycompany.td2.dasi.metier.modele;
 
+import com.mycompany.td2.dasi.utils.Gender;
 import java.io.Serializable;
 import javax.persistence.Entity;
 
@@ -18,14 +19,14 @@ public class Astrolog extends Medium implements Serializable {
     public Astrolog() {
     }
 
-    public Astrolog(String presentation, String name, String gender) {
+    public Astrolog(String presentation, String name, Gender gender) {
         super(presentation, name, gender);
     }
     
     private String formation;
     private String promotion;
     
-    public Astrolog(String presentation, String name, String gender, String formation, String promotion) {
+    public Astrolog(String presentation, String name, Gender gender, String formation, String promotion) {
         super(presentation, name, gender);
         this.formation = formation;
         this.promotion = promotion;

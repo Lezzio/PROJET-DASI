@@ -16,6 +16,7 @@ import com.mycompany.td2.dasi.metier.modele.Medium;
 import com.mycompany.td2.dasi.metier.services.AppointmentService;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
+import com.mycompany.td2.dasi.utils.Gender;
 import java.util.Date;
 import java.util.List;
 
@@ -41,13 +42,13 @@ public class ConsultationTest extends Test {
         //Sign up more employees for the tests
         Client client1 = new Client("Maxime", "Tarantino", "M.", "maxime.tarantino@gmail.com", "tatata", new Date(), "0670235025");
         authentificationService.signupClient(client1);
-        Employee employee1 = new Employee("female", "Lucille", "Fantini", "lucille.fantini@gmail.com", "tastyoctodon1", "0782577583");
+        Employee employee1 = new Employee(Gender.FEMALE, "Lucille", "Fantini", "lucille.fantini@gmail.com", "tastyoctodon1", "0782577583");
         authentificationService.signupEmployee(employee1);
-        Employee employee2 = new Employee("male", "Thibaud", "Collard", "thibaud.collard@gmail.com", "coco09", "0464652212");
+        Employee employee2 = new Employee(Gender.MALE, "Thibaud", "Collard", "thibaud.collard@gmail.com", "coco09", "0464652212");
         authentificationService.signupEmployee(employee2);
         
         //Force the creation of a new medium for the test (not allowed in production)
-        Medium medium = new Medium("Prof Tran le medium oklm", "Prof Tran", "male");
+        Medium medium = new Medium("Prof Tran le medium oklm", "Prof Tran", Gender.MALE);
         try {
         JpaUtil.creerContextePersistance();
         JpaUtil.ouvrirTransaction();

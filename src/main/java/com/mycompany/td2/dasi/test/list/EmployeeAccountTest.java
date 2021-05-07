@@ -9,6 +9,7 @@ import com.mycompany.td2.dasi.metier.modele.Employee;
 import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
 import com.mycompany.td2.dasi.test.Test;
+import com.mycompany.td2.dasi.utils.Gender;
 
 /**
  * @author aguigal
@@ -27,12 +28,12 @@ public class EmployeeAccountTest extends Test {
     public boolean test() {
         
         //Tests sequence for first employee
-        Employee employee1 = new Employee("female", "Claire", "Penaud", "claire.penaud@insa-lyon.fr", "tastyoctodon", "0782977582");
+        Employee employee1 = new Employee(Gender.FEMALE, "Claire", "Penaud", "claire.penaud@insa-lyon.fr", "tastyoctodon", "0782977582");
         boolean firstAccountPassed = employeeAccountTests(employee1);
         if(!firstAccountPassed) return false;
         
         //Tests sequence for second employee
-        Employee employee2 = new Employee("male", "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
+        Employee employee2 = new Employee(Gender.MALE, "Martin", "Delevoie", "martin.delevoie@gmail.com", "delevoie", "0466552212");
         boolean secondAccountPassed = employeeAccountTests(employee2);
         if(!secondAccountPassed) return false;
        

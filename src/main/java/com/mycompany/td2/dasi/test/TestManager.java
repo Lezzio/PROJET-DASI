@@ -11,6 +11,8 @@ import com.mycompany.td2.dasi.test.list.EmployeeAccountTest;
 import com.mycompany.td2.dasi.test.list.StatsTest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +28,7 @@ public class TestManager {
         
         tests.forEach(unitTest -> {
             boolean valid = unitTest.test();
-            System.out.println("Called test for " + unitTest.getName());
+            log("Called test " + unitTest.getName());
             if (!valid) {
                 failedTests.add(unitTest);
             }
@@ -34,8 +36,8 @@ public class TestManager {
         
         int testsCount = tests.size();
         int passedCount = testsCount - failedTests.size();
-        System.out.println("Tests : " + passedCount + "/" + testsCount + " passed");
-        failedTests.forEach(test -> System.out.println("Failed : " + test.getName()));
+        log("Tests : " + passedCount + "/" + testsCount + " passed");
+        failedTests.forEach(test -> log(Level.SEVERE, "Failed : " + test.getName()));
     }
 
     public static void addTest(Test test) {
@@ -50,6 +52,13 @@ public class TestManager {
         EmployeeAccountTest employeeAccountTest = new EmployeeAccountTest();
         ConsultationTest consultationTest = new ConsultationTest();
         StatsTest statsTest = new StatsTest();
+    }
+    
+    public static void log(String message) {
+        log(Level.INFO, message);
+    }
+    public static void log(Level level, String message) {
+        Logger.getAnonymousLogger().log(level, message);
     }
     
 }

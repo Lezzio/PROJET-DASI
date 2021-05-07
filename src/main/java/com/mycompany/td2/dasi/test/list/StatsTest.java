@@ -16,6 +16,7 @@ import com.mycompany.td2.dasi.metier.services.AuthentificationService;
 import com.mycompany.td2.dasi.metier.services.EntityService;
 import com.mycompany.td2.dasi.metier.services.StatsService;
 import com.mycompany.td2.dasi.test.Test;
+import com.mycompany.td2.dasi.utils.Gender;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +46,8 @@ public class StatsTest extends Test {
         
         statsService.numberConsultationByMedium();
         Client client = new Client("Chloé", "Pascal", "Mme.", "chloe.pascal@orange.fr", "mypasswordcool", new Date(), "0475009835");
-        Medium medium = new Medium("Medium test", "Test", "not specified");
-        Employee employee = new Employee("male", "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
+        Medium medium = new Medium("Medium test", "Test", Gender.OTHER);
+        Employee employee = new Employee(Gender.MALE, "James", "McDonald", "james.mcdonald@orange.fr", "mcdo", "0799435634");
         Date startDate = new Date();
         Date endDate = new Date();
         Consultation consultation1 = new Consultation(startDate, endDate, "Très bonne séance", client, medium, employee);
