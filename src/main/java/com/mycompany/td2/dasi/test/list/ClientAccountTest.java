@@ -29,7 +29,7 @@ public class ClientAccountTest extends Test {
     public boolean test() {
         
         //Tests sequence with first client
-        Client client1 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.es", "tornado123", new Date(), "0680255025");
+        Client client1 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.es", "tornado123", new Date(), "0680255025", "12 rue Poussin", "Davezieux", "07430");
         boolean firstAccountPassed = clientAccountTests(client1);
         if(!firstAccountPassed) return false;
         
@@ -42,7 +42,7 @@ public class ClientAccountTest extends Test {
         }
         
         //Tests sequence with second client
-        Client client2 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.fr", "tornado123", new Date(), "0680255025");
+        Client client2 = new Client("Calenovo", "Zorro", "M.", "zorro.calenovo@vodafone.fr", "tornado123", new Date(), "0680255025", "12 rue Poussin", "Davezieux", "07430");
         boolean secondAccountPassed = clientAccountTests(client2);
         if(!secondAccountPassed) return false;
         

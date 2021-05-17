@@ -55,9 +55,9 @@ public class StatsService {
         return null;
     }
     
-    public List<Medium> topFiveMedium() {
+    public Map<String, Integer> topFiveMedium() {
         JpaUtil.creerContextePersistance();
-        List<Medium> listeMediumRetour = null;
+        Map<String, Integer> listeMediumRetour = null;
         try {
             List<Medium> listeMedium = mediumDao.listMediums();
             int nbMedium = listeMedium.size();
@@ -96,11 +96,11 @@ public class StatsService {
 
                     }
             }
-            listeMediumRetour = new ArrayList<Medium>();
+            listeMediumRetour = new HashMap<String,Integer>();
             for(int i = 0; i < 5; i++){
                 System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
                 if(tabTop5[i] != 0){
-                    listeMediumRetour.add(top5Medium[i]);
+                    listeMediumRetour.put(top5Medium[i].getName(), tabTop5[i]);
                 }
             }
         } catch (Exception e) {

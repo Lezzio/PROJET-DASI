@@ -61,15 +61,7 @@ public class EmployeeDao {
     
     public Map<String, Integer> getEmployeeClientCountMap() {
         EntityManager em = JpaUtil.obtenirContextePersistance();
-        TypedQuery<Tuple> query = em.createQuery("""
-                                                    SELECT
-                                                        e.lastName as lastName,
-                                                    COUNT(DISTINCT(c.client)) as uniqueClientsCount
-                                                    FROM
-                                                        Consultation c INNER JOIN c.employee e
-                                                    GROUP BY
-                                                        e
-                                                    """, Tuple.class);
+        TypedQuery<Tuple> query = em.createQuery("SELECT\n" + "    e.lastName as lastName,\n" + "COUNT(DISTINCT(c.client)) as uniqueClientsCount\n" + "FROM\n" + "    Consultation c INNER JOIN c.employee e\n" + "GROUP BY\n" + "    e\n", Tuple.class);
         var resultList = query.getResultList();
         System.out.println("Query = " + query);
         System.out.println(resultList.size());

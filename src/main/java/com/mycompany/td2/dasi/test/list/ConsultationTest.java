@@ -40,7 +40,7 @@ public class ConsultationTest extends Test {
     public boolean test() {
         
         //Sign up more employees for the tests
-        Client client1 = new Client("Maxime", "Tarantino", "M.", "maxime.tarantino@gmail.com", "tatata", new Date(), "0670235025");
+        Client client1 = new Client("Maxime", "Tarantino", "M.", "maxime.tarantino@gmail.com", "tatata", new Date(), "0670235025", "12 rue Poussin", "Davezieux", "07430");
         authentificationService.signupClient(client1);
         Employee employee1 = new Employee(Gender.FEMALE, "Lucille", "Fantini", "lucille.fantini@gmail.com", "tastyoctodon1", "0782577583");
         authentificationService.signupEmployee(employee1);

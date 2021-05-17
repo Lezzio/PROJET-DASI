@@ -4,16 +4,16 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.td2.dasi.metier.modele.Client</class>
     <class>com.mycompany.td2.dasi.metier.modele.Employee</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Astrolog</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Cartomancian</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Consultation</class>
     <class>com.mycompany.td2.dasi.metier.modele.Medium</class>
     <class>com.mycompany.td2.dasi.metier.modele.Spirite</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Cartomancian</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Astrolog</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Consultation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/dasidb"/>
-      <property name="javax.persistence.jdbc.user" value="aguigal"/>
+      <property name="javax.persistence.jdbc.user" value="aurelien"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.password" value="admin"/>
+      <property name="javax.persistence.jdbc.password" value="aurelien"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

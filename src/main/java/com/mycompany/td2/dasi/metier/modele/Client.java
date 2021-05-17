@@ -36,6 +36,9 @@ public class Client implements Serializable {
     private String mail;
     private String password;
     private String phone;
+    private String address;
+    private String zipCode;
+    private String city;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     @Embedded
@@ -48,7 +51,7 @@ public class Client implements Serializable {
     public Client() {
         
     }
-    public Client(String lastName, String firstName, String civility, String mail, String password, Date birthDate, String phone) {
+    public Client(String lastName, String firstName, String civility, String mail, String password, Date birthDate, String phone, String address, String city, String zipCode) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.civility = civility;
@@ -57,6 +60,9 @@ public class Client implements Serializable {
         this.birthDate = birthDate;
         this.astralProfile = null;
         this.phone = phone;
+        this.address = address;
+        this.city = city;
+        this.zipCode = zipCode;
     }
     
     public Long getId() {
@@ -98,10 +104,34 @@ public class Client implements Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
+    
     
     @Override
     public String toString() {
-        return "-> Client: id="+id+";lastName="+lastName+";firstName="+firstName+";mail="+mail+";password"+password+";birthDate="+birthDate;
+        return "-> Client: id="+id+";lastName="+lastName+";firstName="+firstName+";mail="+mail+";password"+password+";birthDate="+birthDate+";address : "+ address + ";city : "+city+";zipCode : " + zipCode;
     }
 
     public AstralProfile getAstralProfile() {
@@ -126,7 +156,10 @@ public class Client implements Serializable {
         && this.mail.equals(client.mail)
         && this.password.equals(client.password)
         && this.phone.equals(client.phone)
-        && this.birthDate.equals(client.birthDate);
+        && this.birthDate.equals(client.birthDate)
+        && this.city.equals(client.city)
+        && this.address.equals(client.address)
+        && this.zipCode.equals(client.zipCode);
     }
     
 }

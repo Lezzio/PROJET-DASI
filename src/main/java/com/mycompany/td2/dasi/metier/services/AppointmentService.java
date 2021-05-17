@@ -104,10 +104,7 @@ public class AppointmentService {
             
             //Notify the consultation is accepted
             Client client = consultation.getClient();
-            Message.envoyerNotification(client.getPhone(), """
-                                                            Bonjour Alice. J’ai bien reçu votre demande de consultation du 14/02/2020 à 12h10.
-                                                           Vous pouvez dès à présent me contacter au 06 55 44 77 88. A tout de suite ! Médiumiquement
-                                                           vôtre, Mme Irma""");
+            Message.envoyerNotification(client.getPhone(), " Bonjour Alice. J\u2019ai bien re\u00e7u votre demande de consultation du 14/02/2020 \u00e0 12h10.\n" + "Vous pouvez d\u00e8s \u00e0 pr\u00e9sent me contacter au 06 55 44 77 88. A tout de suite ! M\u00e9diumiquement\n" + "v\u00f4tre, Mme Irma");
             
             JpaUtil.validerTransaction();
         } catch (Exception e) {
