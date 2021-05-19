@@ -63,10 +63,10 @@ public class StatsService {
             int nbMedium = listeMedium.size();
             int tabTop5[] = new int[nbMedium];
             Medium top5Medium[] = new Medium[nbMedium];
-            for(int i = 0; i < 5; i++) { 
+            for(int i = 0; i < 5 && i < nbMedium; i++) { 
                 tabTop5[i] = 0;
             }
-            for(int i = 0; i < 5; i++) { 
+            for(int i = 0; i < 5 && i < nbMedium; i++) { 
                 top5Medium[i] = listeMedium.get(0);
             }
             int indice = 0;

@@ -20,6 +20,7 @@ import com.mycompany.td2.dasi.utils.Gender;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author aguigal
@@ -88,20 +89,30 @@ public class StatsTest extends Test {
             return false;
         }
         
-        /*TODO : replace List by map
-        List<Medium> mediumRanking = statsService.topFiveMedium();
-        mediumRanking.forEach(m -> System.out.println(m.getName()));
+        Map<String, Integer> mediumRanking = statsService.topFiveMedium();
+        mediumRanking.entrySet().forEach(entry -> {
+            System.out.println("Medium " + entry.getKey() + " avec " + entry.getValue() + " consultation(s)");
+        });
         
         //Only 2 mediums have consultations, first ranked must be Prof Tran with 2 consultations and Test second with one consultation from ConsultationTest
-        if(!mediumRanking.get(0).getName().equals("Prof Tran")) {
-            System.out.println("Failed test medium ranking 1st place for Prof Tran medium");
-            return false;
+        int compteur = 0;
+        for (Map.Entry mapentry : mediumRanking.entrySet()) {      
+            compteur++;
+            if(compteur == 5){
+                if(!mapentry.getKey().equals("Prof Tran")) {
+                    System.out.println("Failed test medium ranking 1st place for Prof Tran medium");
+                    return false;
+                }
+            }
+            else if(compteur == 4)
+            {
+                if(!mapentry.getKey().equals("Test")) {
+                    System.out.println("Failed test medium ranking 2nd place for Test medium");
+                    return false;
+                }
+            }
+            
         }
-        if(!mediumRanking.get(1).getName().equals("Test")) {
-            System.out.println("Failed test medium ranking 2nd place for Test medium");
-            return false;
-        }
-        */
         
         Map<Long, Integer> employeesDistribution = statsService.clientDistributionByEmployee();
         
