@@ -96,8 +96,8 @@ public class StatsService {
 
                     }
             }
-            listeMediumRetour = new HashMap<String,Integer>();
-            for(int i = 0; i < 5; i++){
+            listeMediumRetour = new HashMap<>();
+            for(int i = 0; i < 5 && i < nbMedium; i++){
                 System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
                 if(tabTop5[i] != 0){
                     listeMediumRetour.put(top5Medium[i].getName(), tabTop5[i]);
