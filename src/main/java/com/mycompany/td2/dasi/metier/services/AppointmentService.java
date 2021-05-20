@@ -163,4 +163,18 @@ public class AppointmentService {
         return consultationDao.findHistoryClient(client);
     }
     
+    public void setCommentary(Consultation consultation, String commentary) {
+        JpaUtil.creerContextePersistance();
+        try {
+            JpaUtil.ouvrirTransaction();
+            consultation.setCommentary(commentary);
+            consultationDao.updateConsultation(consultation);
+            JpaUtil.validerTransaction();
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service setCommentary(Consultation consultation, String commentary)", e);
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+    }
+    
 }
