@@ -63,10 +63,10 @@ public class StatsService {
             int nbMedium = listeMedium.size();
             int tabTop5[] = new int[nbMedium];
             Medium top5Medium[] = new Medium[nbMedium];
-            for(int i = 0; i < 5; i++) { 
+            for(int i = 0; i < 5 && i < nbMedium; i++) { 
                 tabTop5[i] = 0;
             }
-            for(int i = 0; i < 5; i++) { 
+            for(int i = 0; i < 5 && i < nbMedium; i++) { 
                 top5Medium[i] = listeMedium.get(0);
             }
             int indice = 0;
@@ -96,8 +96,8 @@ public class StatsService {
 
                     }
             }
-            listeMediumRetour = new HashMap<String,Integer>();
-            for(int i = 0; i < 5; i++){
+            listeMediumRetour = new HashMap<>();
+            for(int i = 0; i < 5 && i < nbMedium; i++){
                 System.out.println("Medium N° : " + (i+1) + " est le medium" + top5Medium[i].toString());
                 if(tabTop5[i] != 0){
                     listeMediumRetour.put(top5Medium[i].getName(), tabTop5[i]);

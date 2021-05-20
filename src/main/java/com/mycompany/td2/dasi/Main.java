@@ -26,7 +26,7 @@ public class Main {
         JpaUtil.init();
         
         
-        admin.initializeMediums();
+        admin.initialize();
         
         /**
          * Launches the test scenarios in the following order :
