@@ -44,7 +44,7 @@ public class Client implements Serializable {
     @Embedded
     private AstralProfile astralProfile;
     @OneToMany(mappedBy = "client")
-    private List<Consultation> consultations;
+    private transient List<Consultation> consultations;
     
     
     
