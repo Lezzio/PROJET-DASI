@@ -4,11 +4,11 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.td2.dasi.metier.modele.Client</class>
     <class>com.mycompany.td2.dasi.metier.modele.Employee</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Astrolog</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Cartomancian</class>
+    <class>com.mycompany.td2.dasi.metier.modele.Consultation</class>
     <class>com.mycompany.td2.dasi.metier.modele.Medium</class>
     <class>com.mycompany.td2.dasi.metier.modele.Spirite</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Cartomancian</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Astrolog</class>
-    <class>com.mycompany.td2.dasi.metier.modele.Consultation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/dasidb"/>
       <property name="javax.persistence.jdbc.user" value="aguigal"/>

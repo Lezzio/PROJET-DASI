@@ -11,6 +11,7 @@ com/mycompany/td2/dasi/utils/Message.class
 com/mycompany/td2/dasi/dao/ClientDao.class
 com/mycompany/td2/dasi/metier/modele/Employee.class
 com/mycompany/td2/dasi/Main.class
+com/mycompany/td2/dasi/utils/Gender.class
 com/mycompany/td2/dasi/metier/modele/Consultation.class
 com/mycompany/td2/dasi/dao/JpaUtil$1.class
 com/mycompany/td2/dasi/utils/Administration.class
