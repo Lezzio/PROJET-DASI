@@ -75,6 +75,21 @@ public class AppointmentService {
         return result;
     }
     
+    public Consultation getClientActiveConsultation(Client client) {
+        Consultation result = null;
+        JpaUtil.creerContextePersistance();
+        
+        try {
+            result = consultationDao.searchActiveClientConsultation(client);
+        } catch (Exception e) {
+            Logger.getAnonymousLogger().log(Level.WARNING, "Exception lors de l'appel au Service getClientActiveConsultation(Client client)", e);
+            result = null;
+        } finally {
+            JpaUtil.fermerContextePersistance();
+        }
+        return result;
+    }
+    
     /**
      * Returns active or pending consultation
      * @param employee
