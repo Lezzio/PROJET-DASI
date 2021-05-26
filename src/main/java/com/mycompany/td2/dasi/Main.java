@@ -27,6 +27,7 @@ public class Main {
         
         admin.initialize();
         //admin.initializeFemaleMediums();
+        admin.initializeDatabase();
         
         /**
          * Launches the test scenarios in the following order :
