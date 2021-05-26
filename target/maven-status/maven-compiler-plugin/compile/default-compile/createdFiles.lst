@@ -15,6 +15,7 @@ com/mycompany/td2/dasi/utils/Gender.class
 com/mycompany/td2/dasi/metier/modele/Consultation.class
 com/mycompany/td2/dasi/dao/JpaUtil$1.class
 com/mycompany/td2/dasi/utils/Administration.class
+com/mycompany/td2/dasi/metier/services/StatsService$1.class
 com/mycompany/td2/dasi/test/TestManager.class
 com/mycompany/td2/dasi/test/list/ClientAccountTest.class
 com/mycompany/td2/dasi/dao/MediumDao.class

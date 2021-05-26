@@ -25,8 +25,8 @@ public class Main {
         //Init the JPA on start
         JpaUtil.init();
         
-        
         admin.initialize();
+        //admin.initializeFemaleMediums();
         
         /**
          * Launches the test scenarios in the following order :
@@ -35,7 +35,7 @@ public class Main {
          * 3) ConsultationTest, makes sure a client can ask a consultation with the right criterion 
          * 4) StatsTest, make sure our statistical service works well
          */
-        TestManager.testApplications();
+        //TestManager.testApplications();
         
         //Destroy the JPA on exit
         JpaUtil.destroy();
