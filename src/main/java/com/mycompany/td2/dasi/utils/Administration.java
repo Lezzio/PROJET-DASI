@@ -133,7 +133,8 @@ public class Administration {
             JpaUtil.fermerContextePersistance();
         }
         appointmentService.acceptConsultation(consultation.getEmployee(), consultation);
-
+        appointmentService.setCommentary(consultation, "séance intéressante");
+        
         JpaUtil.creerContextePersistance();
         try {
             JpaUtil.ouvrirTransaction();
@@ -261,6 +262,7 @@ public class Administration {
             JpaUtil.fermerContextePersistance();
         }
         appointmentService.acceptConsultation(consultation.getEmployee(), consultation);
+        appointmentService.setCommentary(consultation, "séance intéressante");
         appointmentService.endConsultation(consultation.getEmployee(), consultation);
 
         JpaUtil.creerContextePersistance();
@@ -346,6 +348,7 @@ public class Administration {
             JpaUtil.fermerContextePersistance();
         }
         appointmentService.acceptConsultation(consultation.getEmployee(), consultation);
+        appointmentService.setCommentary(consultation, "séance intéressante");
         appointmentService.endConsultation(consultation.getEmployee(), consultation);
 
         JpaUtil.creerContextePersistance();
@@ -431,6 +434,7 @@ public class Administration {
             JpaUtil.fermerContextePersistance();
         }
         appointmentService.acceptConsultation(consultation.getEmployee(), consultation);
+        appointmentService.setCommentary(consultation, "séance intéressante");
         appointmentService.endConsultation(consultation.getEmployee(), consultation);
 
         JpaUtil.creerContextePersistance();
@@ -607,7 +611,7 @@ public class Administration {
         Long id030 = appointmentService.askConsultation(client006, spirite2);
     }
     
-    public void initializeDatabase() {
+    public void initializeDataBase() {
 
         Spirite spirite1 = new Spirite("Spécialiste des grandes conversations au-delà de TOUTES les frontières.",
         "Gwenaëlle", Gender.FEMALE, "Boule de cristal");
